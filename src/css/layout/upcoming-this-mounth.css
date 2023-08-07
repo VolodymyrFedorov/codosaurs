@@ -1,0 +1,212 @@
+.upcoming__list__tablet {
+    display: none;
+}
+
+.upcoming {
+    padding-top: 32px;
+    color: var(--white-smoke);
+    font-family: Roboto;
+    background-color: var(--black);
+}
+
+.upcoming__title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.upcoming__image {
+    width: 280px;
+    height: 402px;
+    margin-top: 24px;
+    border-radius: 5px;
+}
+.upcoming__info-wrapper {
+    margin-top: 24px;
+}
+.upcoming__film__title {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.upcoming__list__rating {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.upcoming__item__rating {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.upcoming__item__rating > li:not(.upcoming__item_customize), .upcoming-about-wrapper > .upcoming__about__title {
+    color: var(--light-gray);
+}
+    
+.upcoming__item__rating > li {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.upcoming__item_customize:first-child {
+    color: var(--orange);
+}
+
+.upcoming__item_customize:nth-child(2) > span {
+    padding-inline: 8px;
+    border-radius: 5px;
+    color: var(--black);
+    background-color: var(--white-smoke);
+}
+
+.upcoming-about-wrapper {
+    margin-top: 20px;
+}
+
+.upcoming__about__title {
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.upcoming-about-wrapper > p:not(.upcoming__about__title) {
+    margin-top: 16px;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+}
+
+.upcoming__btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: var(--liner);
+    border: none;
+    border-radius: 74px;
+    color: var(--black);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.upcoming__btn:hover,
+.upcoming__btn:focus {
+    transform: translateY(-2px);
+    color: var(--white-smoke);
+    background: var(--black);
+    border: 1px solid #f37f31;
+}
+
+
+@media screen and (min-width: 768px) {
+    .upcoming {
+        padding-top: 44px;
+    }
+    .upcoming__title {
+        font-size: 24px;
+    }
+        .upcoming__image {
+            width: 704px;
+            height: 400px;
+        }
+        .upcoming__info-wrapper {
+            margin-top: 32px;
+        }
+        .upcoming__film__title {
+            font-size: 28px;
+        }
+        .upcoming__list__rating {
+            display: none;
+        }
+        
+        .upcoming__item__rating {
+            display: none;
+        }
+
+        
+
+        .upcoming-about-wrapper > p:not(.upcoming__about__title) {
+            width: 625px;
+        }  
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279.9px) {
+    .upcoming__list__tablet {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 24px;
+        row-gap: 12px;
+    }
+    .upcoming__tablet__item {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+    }
+    .upcoming__tablet__item p {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .tablet__subtitle {
+        color: var(--light-gray);
+    }
+    
+    .upcoming__tablet__item:first-child > .tablet__info {
+        color: var(--orange);
+    }
+    
+    .upcoming__tablet__item:nth-child(2) > span {
+        padding-inline: 8px;
+        border-radius: 5px;
+        color: var(--black);
+        background-color: var(--white-smoke);
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .upcoming__info-wrapper {
+        margin-top: 32px;
+    }
+    .upcoming__film__title {
+        font-size: 32px;
+    }
+    .desktop__wrapper {
+        display: flex;
+        gap: 16px;
+    }
+    .upcoming__list__rating {
+        display: flex;
+        justify-content: start;
+        margin-top: 28px;
+        column-gap: 58px;
+    }
+    
+    .upcoming__item__rating {
+        display: flex;
+    }
+
+    .upcoming__list__tablet {
+        display: none;
+    }
+    .upcoming__tablet__item {
+        display: none;
+    }
+    .upcoming-about-wrapper > p:not(.upcoming__about__title) {
+        width: 390px;
+    }
+    .upcoming {
+        padding-top: 60px;
+    }
+    .upcoming__title {
+        font-size: 28px;
+    }
+    .upcoming__image {
+        width: 805px;
+        height: 458px;
+    }
+}
