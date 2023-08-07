@@ -1,3 +1,7 @@
+.upcoming__list__tablet {
+    display: none;
+}
+
 .upcoming {
     padding-top: 32px;
     color: var(--white-smoke);
@@ -124,40 +128,44 @@
             display: none;
         }
 
-        .upcoming__list__tablet {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 24px;
-            row-gap: 12px;
-        }
-        .upcoming__tablet__item {
-            display: flex;
-            justify-content: space-between;
-            width: 40%;
-        }
-        .upcoming__tablet__item p {
-            font-size: 16px;
-            font-weight: 500;
-        }
-        .tablet__subtitle {
-            color: var(--light-gray);
-        }
         
-        .upcoming__tablet__item:first-child > .tablet__info {
-            color: var(--orange);
-        }
-        
-        .upcoming__tablet__item:nth-child(2) > span {
-            padding-inline: 8px;
-            border-radius: 5px;
-            color: var(--black);
-            background-color: var(--white-smoke);
-        }
 
         .upcoming-about-wrapper > p:not(.upcoming__about__title) {
             width: 625px;
         }  
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279.9px) {
+    .upcoming__list__tablet {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 24px;
+        row-gap: 12px;
+    }
+    .upcoming__tablet__item {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+    }
+    .upcoming__tablet__item p {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .tablet__subtitle {
+        color: var(--light-gray);
+    }
+    
+    .upcoming__tablet__item:first-child > .tablet__info {
+        color: var(--orange);
+    }
+    
+    .upcoming__tablet__item:nth-child(2) > span {
+        padding-inline: 8px;
+        border-radius: 5px;
+        color: var(--black);
+        background-color: var(--white-smoke);
+    }
 }
 
 @media screen and (min-width: 1280px) {
@@ -201,5 +209,4 @@
         width: 805px;
         height: 458px;
     }
-   
 }
