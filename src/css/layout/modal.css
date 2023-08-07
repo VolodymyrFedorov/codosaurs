@@ -1,3 +1,83 @@
-.modal-section{
-    padding: 20px 16px 52px ;
+
+.modal{
+    padding: 52px 16px ;
+    width: 280px;
+    height: 847px;
+    position: relative;
+
+    border-radius: 16px;
+    background: var(--background, #111);
+
+/* SHADOW */
+box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+}
+.modal-close-btn {
+    cursor: pointer;
+    background-color: #0000;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    overflow: hidden;
+}
+.modal-img {
+    min-width: 248px;
+    height: 345px;
+    margin-bottom: 22px;
+}
+
+.modal-film-title{
+    color: var(--white-smoke);
+    margin-bottom: 28px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+.modal-film-info-box{
+    display: flex;
+    justify-content: space-between;
+}
+.modal-film-text{
+    color: var(--grey, #B7B7B7);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 114.286% */
+}
+.modal-film-text:not(:last-child){
+    margin-bottom: 12px;
+}
+.modal-film-rating,
+.modal-film-votes{
+    background-color: var(--white-smoke);
+    color: var(--black);
+    border-radius: 5px;
+    padding: 1px 8px;
+    font-size: 12px;
+    line-height: 1.14;
+    display: inline-block;
+}
+.modal-film-devider{
+    color: var(--grey, #B7B7B7);
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 100% */
+}
+.modal-film-population, 
+.modal-film-genre {
+    color: var(--white, #FFF);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
 }
