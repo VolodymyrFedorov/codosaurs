@@ -5,6 +5,7 @@ footer {
   display: flex;
   justify-content: center;
 }
+
 .footer-contain {
   width: 320px;
   text-align: center;
@@ -20,9 +21,11 @@ footer {
 
   color: #b7b7b7;
 }
+
 .footer-contain__svg {
   margin-top: 10px;
 }
+
 .footer-contain__students {
   font-family: 'Roboto Medium';
   color: #b7b7b7;
@@ -30,12 +33,13 @@ footer {
   text-decoration: underline;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .footer-contain__students:hover,
 .footer-contain__students:focus {
   color: #f87719;
 }
 /* зміна теми сайту */
-.light-theme footer {
+/* .light-theme footer {
   background: #f5f5f5;
 }
 
@@ -49,7 +53,7 @@ footer {
 .light-theme .footer-contain__students:hover,
 .light-theme .footer-contain__students:focus {
   color: #f87719;
-}
+} */
 
 /* modal */
 .footer-contain__backdrop {
@@ -70,7 +74,6 @@ footer {
 .footer-contain__modal {
   margin-top: 10px;
   margin-bottom: 10px;
-
   padding: 20px 16px;
   position: absolute;
   top: 50%;
@@ -78,10 +81,7 @@ footer {
   transform: translate(-50%, -50%);
   min-width: 280px;
   max-height: 500px;
-  /* max-height: 100%; */
-
   overflow-y: scroll;
-
   color: #f8f8f8;
   background: #111111;
   box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
@@ -96,13 +96,13 @@ footer {
 }
 
 /*  редагування скролу в модалці */
-.footer-contain__modal::-webkit-scrollbar {
+/* .footer-contain__modal::-webkit-scrollbar {
   width: 4px;
 }
 .footer-contain__modal::-webkit-scrollbar-thumb {
   background-color: #f87719;
   border-radius: 74px;
-}
+} */
 
 /* закриваюча свг */
 .footer-contain__modal svg {
@@ -111,6 +111,7 @@ footer {
   cursor: pointer;
   transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .light-theme .footer-contain__modal svg {
   stroke: #111111;
 }
@@ -127,6 +128,7 @@ footer {
   font-size: 20px;
   line-height: 1.15;
 }
+
 .footer-contain__modal-text {
   margin-top: 15px;
   margin-bottom: 20px;
@@ -134,31 +136,28 @@ footer {
   font-size: 12px;
   line-height: 1.67;
 }
+
 /* посилання на github */
 .footer-contain__modal-github {
   position: relative;
   text-align: center;
   cursor: pointer;
-
   margin-bottom: 20px;
   margin-left: 97px;
   margin-right: 97px;
-
   padding: 12px 24px;
-
   border-radius: 74px;
   border: none;
-
   color: #f5f5f5;
   background: #111111;
-
   transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .light-theme .footer-contain__modal-github {
   background: #f5f5f5;
   color: #111111;
 }
-/* градієнт border */
+
 .footer-contain__modal-github::before,
 .footer-contain__modal-back::before {
   content: '';
@@ -283,10 +282,8 @@ footer {
   /* modal */
   .footer-contain__modal {
     padding: 25px 44px;
-
     min-width: 704px;
     max-height: 677px;
-    /* max-height: 100%; */
   }
 
   .footer-contain__modal-text {
@@ -328,9 +325,6 @@ footer {
     font-size: 18px;
     line-height: 1;
   }
-  /* .footer-contain__modal-back {
-    margin-bottom: 25px;
-  } */
 }
 
 @media screen and (min-width: 1158px) {
@@ -345,11 +339,8 @@ footer {
   /* modal */
   .footer-contain__modal {
     padding: 30px 60px;
-
     width: 940px;
     max-height: 694px;
-    /* max-height: 100%; */
-    /* z-index: 999; */
   }
   .footer-contain__modal-text {
     margin-bottom: 40px;
