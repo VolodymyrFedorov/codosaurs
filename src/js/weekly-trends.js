@@ -16,17 +16,17 @@ const options = {
 axios
   .request(options)
   .then(function (response) {
-    console.log(response.data.results);
+    // console.log(response.data.results);
     renderMarkup(response.data.results);
     
   })
   .catch(function (error) {
-    console.error(error);
+    // console.error(error);
   });
 
 
 function createMarkup(array) {
-    console.log(array);
+    // console.log(array);
   const markup = array
     .map(
       ({
@@ -36,7 +36,7 @@ function createMarkup(array) {
         title,
         vote_average,
       }) => {
-        console.log(poster_path);
+        // console.log(poster_path);
         return ` <li class="trends__item" id=${id}>
         <img
           src="https://image.tmdb.org/t/p/original/${poster_path}"
@@ -64,7 +64,7 @@ function createMarkup(array) {
       }
     )
     .join('');
-    console.log(markup);
+    // console.log(markup);
   return markup;
 }
 

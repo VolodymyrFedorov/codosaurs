@@ -1,7 +1,6 @@
 import  axios from 'axios';
 const refs =  {
     ulEl : document.querySelector(".trends__list"),
-    imgEl : document.querySelectorAll(".trends__photo"),
     backdrop : document.querySelector(".js-backdrop"),
     btnCls : document.querySelector(".js-btn-cls"),
     card : document.querySelector(".trends__item"),
@@ -26,23 +25,24 @@ async function findCard(id){
   }
 
 async function openModal(event) {
-refs.body.style.overflow =  "hidden";
-const arr = [...refs.imgEl];
-refs.modalBox.innerHTML = " "
+    const liElem = event.target.closest('li');
+    const cardId = liElem.getAttribute("id"); 
 
-if (arr.includes(event.target)) {                 //открыл модадлку
+    refs.body.style.overflow =  "hidden";
+    refs.modalBox.innerHTML = " "
+
+
+if (!liElem.classList.contains(".trends__item")) {                 //открыл модадлку
 refs.backdrop.classList.remove("visually-hidden");
 }
 refs.backdrop.addEventListener("click", onBackdropClick);  
 refs.btnCls.addEventListener("click", clsModal);
 document.addEventListener('keydown', keyBoardPress);
 
-const liElem = event.target.closest('li');
-const cardId = liElem.getAttribute("id");           //id для запроса
+          //id для запроса
 
 try {
     const data = await findCard(cardId)
-    console.log(data);
     renderCard(data)
 
 } catch (error) {
@@ -55,7 +55,6 @@ try {
 function renderCard({poster_path, original_title, vote_average, vote_count, popularity, genres, overview}) {
 
   const genresList = genres.map(el=>el.name).join(" ");
-  console.log(genresList);
   const markup =` <img class="modal-img" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}">
     <div class="modal-film-info">
       <h2 class="modal-film-title">J${original_title}</h2>
