@@ -28,6 +28,7 @@
 .upcoming__film__title {
     font-size: 20px;
     font-weight: 500;
+    line-height: 1.2;
     text-transform: uppercase;
 }
 .upcoming__list__rating {
