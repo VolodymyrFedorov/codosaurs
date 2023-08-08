@@ -1,23 +1,32 @@
 const refs =  {
     ulEl : document.querySelector(".trends__list"),
-    liEl : document.querySelectorAll(".trends__photo"),
+    imgEl : document.querySelectorAll(".trends__photo"),
     backdrop : document.querySelector(".js-backdrop"),
     btnCls : document.querySelector(".js-btn-cls"),
+    card : document.querySelector(".js-card")
 }
-
-
 refs.ulEl.addEventListener("click", openModal)
 
-const arr = [...refs.liEl]
+
 
 function openModal(event) {
-if (arr.includes(event.target)) {                   //открыл модадлку
+const arr = [...refs.imgEl];
+
+if (arr.includes(event.target)) {   
+    const liElem = event.target.closest('li');
+    console.log(liElem);                //открыл модадлку
 refs.backdrop.classList.remove("visually-hidden")
 }
 refs.backdrop.addEventListener("click", onBackdropClick);  
 refs.btnCls.addEventListener("click", clsModal);
 document.addEventListener('keydown', keyBoardPress);
 
+const cardId = refs.card.getAttribute("id");        //id для запроса
+console.log(cardId);
+}
+
+function renderCard(obj) {
+    
 }
 
 
@@ -42,3 +51,4 @@ function onBackdropClick(event) {                   //закрываю по back
     removeEvent();
 }
 }
+
