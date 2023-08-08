@@ -9,7 +9,7 @@ const refs =  {
 }
 const BASE_URL='https://api.themoviedb.org/3/movie/'
 refs.ulEl.addEventListener("click", openModal)
-
+let toLs = [];
 
 async function findCard(id){
     const response = await axios.get(`${BASE_URL}${id}`,{
@@ -26,7 +26,7 @@ async function findCard(id){
 
 async function openModal(event) {
     const liElem = event.target.closest('li');
-    const cardId = liElem.getAttribute("id"); 
+    const cardId = liElem.getAttribute("id");                      //id для запроса
 
     refs.body.style.overflow =  "hidden";
     refs.modalBox.innerHTML = " "
@@ -39,11 +39,12 @@ refs.backdrop.addEventListener("click", onBackdropClick);
 refs.btnCls.addEventListener("click", clsModal);
 document.addEventListener('keydown', keyBoardPress);
 
-          //id для запроса
+         
 
 try {
     const data = await findCard(cardId)
     renderCard(data)
+    
 
 } catch (error) {
     console.log(error.code)
@@ -60,7 +61,7 @@ function renderCard({poster_path, original_title, vote_average, vote_count, popu
       <h2 class="modal-film-title">${original_title}</h2>
       <div class="modal-film-info-box">
           <ul class="modal-film-info-items-name">
-              <li class="modal-film-text">Vote / Votes</li>
+              <li class="modal-film-text">Vote/Votes</li>
               <li class="modal-film-text">Popularity</li>
               <li class="modal-film-text">Genre</li>
           </ul>
