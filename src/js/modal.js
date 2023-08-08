@@ -57,7 +57,7 @@ function renderCard({poster_path, original_title, vote_average, vote_count, popu
   const genresList = genres.map(el=>el.name).join(" ");
   const markup =` <img class="modal-img" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}">
     <div class="modal-film-info">
-      <h2 class="modal-film-title">J${original_title}</h2>
+      <h2 class="modal-film-title">${original_title}</h2>
       <div class="modal-film-info-box">
           <ul class="modal-film-info-items-name">
               <li class="modal-film-text">Vote / Votes</li>
