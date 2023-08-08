@@ -1,0 +1,109 @@
+.hero {
+  background-color: #000;
+}
+
+.hero-container {
+  background: linear-gradient(82deg, #111 28.7%, rgba(17, 17, 17, 0) 100%),
+    url('/src/image/hero-mob-bcg.jpg'),
+    lightgray 14.123px -4.871px / 174.835% 102.055% no-repeat;
+  padding: 40px 101px 80px 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.hero-title {
+  color: #fff;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  height: 114px;
+}
+.hero-text-mob {
+  margin-bottom: 20;
+  color: #f8f8f8;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+}
+.hero-text-tabl {
+  display: none;
+}
+
+.hero-btn {
+  border-radius: 74px;
+  background: var(--linear, linear-gradient(145deg, #ffc226 0%, #f84119 100%));
+  color: #111;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border: none;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-container {
+    background: linear-gradient(76deg, #111 6.82%, rgba(17, 17, 17, 0) 100%),
+      url('/src/image/hero-tabl-bcg.png'),
+      lightgray 243.002px -7.221px / 92.376% 104.171% no-repeat;
+    padding: 62px 379px 72px 32px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .hero-title {
+    color: #fff;
+    font-family: Roboto;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .hero-text-mob {
+    display: none;
+  }
+  .hero-text-tabl {
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 32px;
+    line-height: 1.16;
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero-container {
+    background: linear-gradient(76deg, #111 6.82%, rgba(17, 17, 17, 0) 100%),
+      url('/src/image/hero-tabl-bcg.png'),
+      lightgray 243.002px -7.221px / 92.376% 104.171% no-repeat;
+    padding: 169px 784px 169px 32px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .hero-title {
+    color: #fff;
+    font-family: Roboto;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.2;
+    height: 150px;
+    margin-bottom: 16px;
+  }
+  .hero-text-tabl {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  .hero-btn {
+    width: 130px;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
