@@ -1,5 +1,29 @@
 import axios from 'axios';
 
+
+  const genres = [
+    { id: 28, name: 'Action' },
+    { id: 12, name: 'Adventure' },
+    { id: 16, name: 'Animation' },
+    { id: 35, name: 'Comedy' },
+    { id: 80, name: 'Crime' },
+    { id: 99, name: 'Documentary' },
+    { id: 18, name: 'Drama' },
+    { id: 10751, name: 'Family' },
+    { id: 14, name: 'Fantasy' },
+    { id: 36, name: 'History' },
+    { id: 27, name: 'Horror' },
+    { id: 10402, name: 'Music' },
+    { id: 9648, name: 'Mystery' },
+    { id: 10749, name: 'Romance' },
+    { id: 878, name: 'Science Fiction' },
+    { id: 10770, name: 'TV Movie' },
+    { id: 53, name: 'Thriller' },
+    { id: 10752, name: 'War' },
+    { id: 37, name: 'Western' },
+  ];
+
+
 const selectEl = document.querySelector('.trends__list')
 
 const options = {
@@ -16,27 +40,29 @@ const options = {
 axios
   .request(options)
   .then(function (response) {
-    // console.log(response.data.results);
     renderMarkup(response.data.results);
     
   })
   .catch(function (error) {
-    // console.error(error);
+    console.error(error);
   });
 
 
-function createMarkup(array) {
-    // console.log(array);
-  const markup = array
+function nameGenresId(idNames) {
+  const genreNames = idNames.map(idName => {
+    const genre = genres.find(genre => genre.id === idName);
+    return genre.name;
+  });
+  return genreNames.join(', ');
+}
+
+
+function createMarkup(data) {
+   console.log(data);
+  const markup = data
     .map(
-      ({
-        id,
-        poster_path,
-        release_date,
-        title,
-        vote_average,
-      }) => {
-        // console.log(poster_path);
+      ({ genre_ids, id, poster_path, release_date, title, vote_average }) => {
+          const genreNames = nameGenresId(genre_ids);
         return ` <li class="trends__item" id=${id}>
         <img
           src="https://image.tmdb.org/t/p/original/${poster_path}"
@@ -46,17 +72,18 @@ function createMarkup(array) {
         <div class="trends__description">
           <div class="trends__info">
             <h3 class="trends__name">${title}</h3>
-            <p class="trends__ganre">Drama, Action | ${release_date}</p>
+            <p class="trends__ganre">${genreNames} | ${release_date}</p>
           </div>
-          <div class="raiting-body">
-            <div class="rating-active" style="width: ${vote_average}px">
-              <div class="rating-active-wrapper">
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
+          <div class="raiting__body">
+            <div class="rating__active">
+              <div class="rating__active__wrapper" style="width: ${(vote_average*10)}px">
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
               </div>
+            
             </div>
           </div>
         </div>
@@ -64,7 +91,6 @@ function createMarkup(array) {
       }
     )
     .join('');
-    // console.log(markup);
   return markup;
 }
 
@@ -73,8 +99,6 @@ function renderMarkup(array) {
   const markup = createMarkup(array);
   selectEl.innerHTML = markup;
 }
-
-// renderMarkup()
 
 
 
