@@ -1,24 +1,30 @@
 import axios from 'axios';
 
-const selectEl = document.querySelector('.trends__list')
-const BASE_URL = 'https://api.themoviedb.org/3/'
 
-// async function getTrends() {
-//  const response = await axios.get(`${BASE_URL}trending/movie/week`,{
-//     headers: {
-//       accept: 'application/json',
-//       Authorization:
-//         'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA',
-//     },
-//     params: { 
-//       language: 'en-US' 
-//     },
-//   })
-//   const data = response.data
-//   const results = data.results
-//   console.log(results);
-//   return results;
-// }
+  const genres = [
+    { id: 28, name: 'Action' },
+    { id: 12, name: 'Adventure' },
+    { id: 16, name: 'Animation' },
+    { id: 35, name: 'Comedy' },
+    { id: 80, name: 'Crime' },
+    { id: 99, name: 'Documentary' },
+    { id: 18, name: 'Drama' },
+    { id: 10751, name: 'Family' },
+    { id: 14, name: 'Fantasy' },
+    { id: 36, name: 'History' },
+    { id: 27, name: 'Horror' },
+    { id: 10402, name: 'Music' },
+    { id: 9648, name: 'Mystery' },
+    { id: 10749, name: 'Romance' },
+    { id: 878, name: 'Science Fiction' },
+    { id: 10770, name: 'TV Movie' },
+    { id: 53, name: 'Thriller' },
+    { id: 10752, name: 'War' },
+    { id: 37, name: 'Western' },
+  ];
+
+
+const selectEl = document.querySelector('.trends__list')
 
 const options = {
   method: 'GET',
@@ -34,14 +40,12 @@ const options = {
 axios
   .request(options)
   .then(function (response) {
-    // console.log(response.data.results);
     renderMarkup(response.data.results);
     
   })
   .catch(function (error) {
-    // console.error(error);
+    console.error(error);
   });
-
 
 async function createMarkup(array) {
   const markupArray = await Promise.all(array.map(async ({
@@ -65,67 +69,34 @@ async function createMarkup(array) {
         <div class="trends__description">
           <div class="trends__info">
             <h3 class="trends__name">${title}</h3>
+
             <p class="trends__ganre">${genreName}|${year}</p>
           </div>
-          <div class="raiting-body">
-            <div class="rating-active" style="width: ${(vote_average)*10}px">
-              <div class="rating-active-wrapper">
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
+          <div class="raiting__body">
+            <div class="rating__active">
+              <div class="rating__active__wrapper" style="width: ${(vote_average*10)}px">
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
               </div>
+            
             </div>
           </div>
         </div>
       </li>`;
+
   }));
 
   return markupArray.join('');
 }
-async function renderMarkup(array) {
-  const markup = await createMarkup(array);
+
+
+function renderMarkup(array) {
+  const markup = createMarkup(array);
   selectEl.innerHTML = markup;
 }
-// !======================
-async function loadGenre() {
-
-  const response = await axios.get(`${BASE_URL}genre/movie/list`,{
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
-    },
-    params: {
-      language: 'en'
-    }
-  })
-  
-  const data = response.data;
-  const genres = data.genres
-  return genres;
-}
-async function cardGenres(genres) {
-  const defaultGen = "Nice film"
-  if(genres.length === 0){
-    return defaultGen;
-  }
-  try {
-    const genresApi =  await loadGenre()
-    const newArr = genresApi.filter((elem=> elem.id === genres[0])).map(el=>el.name).join(" ")
-    console.log(newArr);
-    
-    return newArr;
-  } catch (error) {
-    console.log(error.code);
-  }
-  
-}
-function getYear(date) {
-  date = date.split("-");
-  return date[0];
-}
-
 
 
 
