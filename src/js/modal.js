@@ -12,6 +12,7 @@ const BASE_URL='https://api.themoviedb.org/3/movie/'
 refs.ulEl.addEventListener("click", openModal)
 let toLs = [];
 export const KEY = "Library";
+
 async function findCard(id){
     const response = await axios.get(`${BASE_URL}${id}`,{
     headers: {
@@ -78,7 +79,7 @@ try {
     console.log(error.code)
     clsModal()
  }}
- function loadLs(key) {
+export function loadLs(key) {
     const arrJs = localStorage.getItem(key);                       
     return arr = JSON.parse(arrJs);
  }
