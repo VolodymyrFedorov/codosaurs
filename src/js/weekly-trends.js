@@ -43,22 +43,20 @@ axios
   });
 
 
-function createMarkup(array) {
-      console.log(array);
-      cardGenres(array[0].genre_ids)
-      cardGenres(array[1].genre_ids)
-  const markup = array
-    .map(
-      ({
-        id,
-        genre_ids,
-        poster_path,
-        release_date,
-        title,
-        vote_average,
-      }) => {
-         
-        return ` <li class="trends__item" id=${id}>
+async function createMarkup(array) {
+  const markupArray = await Promise.all(array.map(async ({
+    id,
+    genre_ids,
+    poster_path,
+    release_date,
+    title,
+    vote_average,
+  }) => {
+    
+    const genreName = await cardGenres(genre_ids);
+    const year = getYear(release_date);
+
+    return `<li class="trends__item" id=${id}>
         <img
           src="https://image.tmdb.org/t/p/original/${poster_path}"
           alt="${title}"
@@ -67,7 +65,7 @@ function createMarkup(array) {
         <div class="trends__description">
           <div class="trends__info">
             <h3 class="trends__name">${title}</h3>
-            <p class="trends__ganre">${cardGenres(genre_ids)}|${getYear(release_date)}</p>
+            <p class="trends__ganre">${genreName}|${year}</p>
           </div>
           <div class="raiting-body">
             <div class="rating-active" style="width: ${(vote_average)*10}px">
@@ -82,11 +80,9 @@ function createMarkup(array) {
           </div>
         </div>
       </li>`;
-      }
-    )
-    .join('');
-    
-  return markup;
+  }));
+
+  return markupArray.join('');
 }
 async function renderMarkup(array) {
   const markup = await createMarkup(array);
