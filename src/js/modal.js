@@ -11,7 +11,7 @@ const refs =  {
 const BASE_URL='https://api.themoviedb.org/3/movie/'
 refs.ulEl.addEventListener("click", openModal)
 let toLs = [];
-const KEY = "Library";
+export const KEY = "Library";
 async function findCard(id){
     const response = await axios.get(`${BASE_URL}${id}`,{
     headers: {
@@ -48,16 +48,16 @@ try {
     const btnLs = document.querySelector(".js-btn-to-ls");
     const arr =  loadLs(KEY);
       
-    if(arr){                                              //проверил на пустой LS, забрал данные в массив 
+    if(arr){                                                //проверил на пустой LS, забрал данные в массив 
     toLs = [...arr];
 
-    if (toLs.some(el=>el.id === (+cardId))){              //проверил есть ли фильм в LS
+    if (toLs.some(el=>el.id === (+cardId))){                //проверил есть ли фильм в LS
     btnLs.textContent = "Remove from my library"
     }}
 
-    btnLs.addEventListener("click", ()=>{                //обрабатываю клик
+    btnLs.addEventListener("click", ()=>{                    //обрабатываю клик
         try {
-        if (!toLs.some(el=>el.id === (+cardId))){        //добавляю в LS
+        if (!toLs.some(el=>el.id === (+cardId))){            //добавляю в LS
             toLs.push(data);
             saveLs(KEY, toLs)                              
             btnLs.textContent = "Remove from my library"
@@ -82,11 +82,11 @@ try {
     const arrJs = localStorage.getItem(key);                       
     return arr = JSON.parse(arrJs);
  }
-function saveLs (key, value) {
+export function saveLs (key, value) {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState); 
 }
-function renderCard(markup) {
+export function renderCard(markup) {
 return refs.modalBox.insertAdjacentHTML("afterbegin", markup)  
 }
 function cardMarkup({poster_path, original_title, vote_average, vote_count, popularity, genres, overview}) {
