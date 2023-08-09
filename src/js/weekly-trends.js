@@ -47,23 +47,20 @@ axios
     console.error(error);
   });
 
+async function createMarkup(array) {
+  const markupArray = await Promise.all(array.map(async ({
+    id,
+    genre_ids,
+    poster_path,
+    release_date,
+    title,
+    vote_average,
+  }) => {
+    
+    const genreName = await cardGenres(genre_ids);
+    const year = getYear(release_date);
 
-function nameGenresId(idNames) {
-  const genreNames = idNames.map(idName => {
-    const genre = genres.find(genre => genre.id === idName);
-    return genre.name;
-  });
-  return genreNames.join(', ');
-}
-
-
-function createMarkup(data) {
-   console.log(data);
-  const markup = data
-    .map(
-      ({ genre_ids, id, poster_path, release_date, title, vote_average }) => {
-          const genreNames = nameGenresId(genre_ids);
-        return ` <li class="trends__item" id=${id}>
+    return `<li class="trends__item" id=${id}>
         <img
           src="https://image.tmdb.org/t/p/original/${poster_path}"
           alt="${title}"
@@ -72,7 +69,8 @@ function createMarkup(data) {
         <div class="trends__description">
           <div class="trends__info">
             <h3 class="trends__name">${title}</h3>
-            <p class="trends__ganre">${genreNames} | ${release_date}</p>
+
+            <p class="trends__ganre">${genreName}|${year}</p>
           </div>
           <div class="raiting__body">
             <div class="rating__active">
@@ -88,10 +86,10 @@ function createMarkup(data) {
           </div>
         </div>
       </li>`;
-      }
-    )
-    .join('');
-  return markup;
+
+  }));
+
+  return markupArray.join('');
 }
 
 
