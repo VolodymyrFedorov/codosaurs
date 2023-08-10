@@ -10,9 +10,11 @@ export function upcomingSectionMarkup(randomFilm) {
     const genres = randomFilm.genres.reduce((acc,el)=>{
         acc += `${el.name} `;
         return acc
-    },'').split(' ').filter(el=>el).join(',');
+    },'').split(' ').filter(el=>el);
+    genres.length = 2;
+    const genre = genres.join(', ')
     const markup = `<img class="upcoming__image"
-             src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${randomFilm.poster_path}" alt="${randomFilm.original_title}" 
+             src="https://image.tmdb.org/t/p/original/${randomFilm.backdrop_path}" alt="${randomFilm.original_title}" 
              loading="lazy"/>
              <div class="desktop__info__wrapper">
             <div class="upcoming__info-wrapper">
@@ -31,7 +33,7 @@ export function upcomingSectionMarkup(randomFilm) {
                         <li class="upcoming__item_customize">${randomFilm.release_date}</li>
                         <li class="upcoming__item_customize"><span>${randomFilm.vote_average.toFixed(1)}</span> &#47; <span>${randomFilm.vote_count}</span></li>
                         <li class="upcoming__item_customize">${randomFilm.popularity}</li>
-                        <li class="upcoming__item_customize">${genres}</li>
+                        <li class="upcoming__item_customize">${genre}</li>
                     </ul>
                 </li>
                 </ul>
