@@ -23,8 +23,7 @@
     "jQuery": "^1.7.4",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
-    "swiper": "^9.3.2",
-    "tui-pagination": "^3.4.1"
+    "swiper": "^10.1.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
