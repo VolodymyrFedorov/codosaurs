@@ -49,7 +49,7 @@ function createRandomMoviesArr(moviesArr, numberOfMovies) {
   return randomMoviesArr;
 }
 
-document.addEventListener('click', onWatchTrailer);
+// document.addEventListener('click', onWatchTrailer);
 
 export { heroRefs };
 export { swiper };
