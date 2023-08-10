@@ -22,7 +22,8 @@
     "jquery": "^3.7.0",
     "jQuery": "^1.7.4",
     "modern-normalize": "^1.1.0",
-    "node-fetch": "^3.3.2"
+    "notiflix": "^3.2.6",
+    "swiper": "^10.1.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

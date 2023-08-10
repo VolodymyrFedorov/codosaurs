@@ -84,8 +84,8 @@
 .upcoming__btn {
     margin-top: 20px;
     padding: 12px 24px;
-    background: var(--liner);
-    border: none;
+    background: var(--liner) padding-box padding-box,linear-gradient(141.22deg,#ffc226 9.4%,#f84119 91.91%) border-box;
+    border: 1px solid #0000;
     border-radius: 74px;
     color: var(--black);
     text-align: center;
@@ -98,9 +98,11 @@
 .upcoming__btn:hover,
 .upcoming__btn:focus {
     transform: translateY(-2px);
-    color: var(--white-smoke);
+    /* color: var(--white-smoke);
     background: var(--black);
-    border: 1px solid #f37f31;
+    border: 1px solid #f37f31; */
+    color: var(--orange);
+    background: linear-gradient(#FFF,#FFF) padding-box padding-box,linear-gradient(141.22deg,#ffc226 9.4%,#f84119 91.91%) border-box;
 }
 
 
@@ -171,7 +173,7 @@
 
 @media screen and (min-width: 1280px) {
     .upcoming__info-wrapper {
-        margin-top: 32px;
+        margin-top: 28px;
     }
     .upcoming__film__title {
         font-size: 32px;
@@ -207,6 +209,7 @@
         font-size: 28px;
     }
     .upcoming__image {
+        margin-top: 28px;
         width: 805px;
         height: 458px;
     }

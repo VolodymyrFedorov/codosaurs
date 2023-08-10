@@ -1,6 +1,24 @@
 import axios from 'axios';
 
 const selectEl = document.querySelector('.trends__list')
+const BASE_URL = 'https://api.themoviedb.org/3/'
+
+// async function getTrends() {
+//  const response = await axios.get(`${BASE_URL}trending/movie/week`,{
+//     headers: {
+//       accept: 'application/json',
+//       Authorization:
+//         'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA',
+//     },
+//     params: { 
+//       language: 'en-US' 
+//     },
+//   })
+//   const data = response.data
+//   const results = data.results
+//   console.log(results);
+//   return results;
+// }
 
 const options = {
   method: 'GET',
@@ -25,19 +43,20 @@ axios
   });
 
 
-function createMarkup(array) {
-    // console.log(array);
-  const markup = array
-    .map(
-      ({
-        id,
-        poster_path,
-        release_date,
-        title,
-        vote_average,
-      }) => {
-        // console.log(poster_path);
-        return ` <li class="trends__item" id=${id}>
+async function createMarkup(array) {
+  const markupArray = await Promise.all(array.map(async ({
+    id,
+    genre_ids,
+    poster_path,
+    release_date,
+    title,
+    vote_average,
+  }) => {
+    
+    const genreName = await cardGenres(genre_ids);
+    const year = getYear(release_date);
+
+    return `<li class="trends__item" id=${id}>
         <img
           src="https://image.tmdb.org/t/p/original/${poster_path}"
           alt="${title}"
@@ -46,35 +65,66 @@ function createMarkup(array) {
         <div class="trends__description">
           <div class="trends__info">
             <h3 class="trends__name">${title}</h3>
-            <p class="trends__ganre">Drama, Action | ${release_date}</p>
+            <p class="trends__ganre">${genreName}|${year}</p>
           </div>
-          <div class="raiting-body">
-            <div class="rating-active" style="width: ${vote_average}px">
-              <div class="rating-active-wrapper">
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
+          <div class="raiting__body">
+            <div class="rating__active" style="width: ${(vote_average)*10}px">
+              <div class="rating__active__wrapper">
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
               </div>
             </div>
           </div>
         </div>
       </li>`;
-      }
-    )
-    .join('');
-    // console.log(markup);
-  return markup;
+  }));
+
+  return markupArray.join('');
 }
-
-
-function renderMarkup(array) {
-  const markup = createMarkup(array);
+async function renderMarkup(array) {
+  const markup = await createMarkup(array);
   selectEl.innerHTML = markup;
 }
+// !======================
+async function loadGenre() {
 
-// renderMarkup()
+  const response = await axios.get(`${BASE_URL}genre/movie/list`,{
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+    },
+    params: {
+      language: 'en'
+    }
+  })
+  
+  const data = response.data;
+  const genres = data.genres
+  return genres;
+}
+async function cardGenres(genres) {
+  const defaultGen = "Nice film"
+  if(genres.length === 0){
+    return defaultGen;
+  }
+  try {
+    const genresApi =  await loadGenre()
+    const newArr = genresApi.filter((elem=> elem.id === genres[0])).map(el=>el.name).join(" ")
+    
+    return newArr;
+  } catch (error) {
+    console.log(error.code);
+  }
+  
+}
+function getYear(date) {
+  date = date.split("-");
+  return date[0];
+}
+
 
 
 
