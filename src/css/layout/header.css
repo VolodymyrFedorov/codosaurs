@@ -1,0 +1,314 @@
+:root {
+  --primary-text-color: #f8f8f8;
+  --secondary-text-color: #b7b7b7;
+
+  --primary-title-color: #ffffff;
+
+  --primary-bgc: #111111;
+
+  --primary-btn-color: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
+
+  --primary-ligth-theme-text-color: #282828;
+  --secondary-ligth-theme-text-color: #595959;
+
+  --ligth-theme-title-color: #111111;
+
+  --ligth-theme-bgc: #ffffff;
+
+  --primary-ligth-theme-btn-color: linear-gradient(
+    141.22deg,
+    #ffc226 9.4%,
+    #f84119 91.91%
+  );
+
+  --accent-color: #f87719;
+
+  --black: #000000;
+  --white: #ffffff;
+}
+
+
+.logo-text.ligth-mode {
+  color: #282828;
+}
+
+.logo span:hover,
+.logo-text.ligth-mode:hover,
+.mobile-menu:hover {
+  color: var(--accent-color);
+}
+
+.nav_item {
+  width: fit-content;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  position: relative;
+}
+
+.nav_item::before {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background-color: var(--accent-color);
+  border-radius: 5px;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+}
+.nav_item:hover::before {
+  width: 100%;
+}
+.header {
+  transition: background-color 0.5s ease;
+}
+.header.ligth-mode {
+  background-color: #fff;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.current-page {
+  text-shadow: 0px 0px 8px var(--accent-color);
+  color: var(--accent-color);
+}
+.nav_link{
+    color:var(--primary-title-color)
+}
+
+.nav_link:hover {
+  color: var(--accent-color);
+  text-shadow: 0px 0px 8px var(--accent-color);
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 320px) {
+  .header {
+    background-color: var(--black);
+    height: 48px;
+    display: flex;
+    color: #b7b7b7;
+  }
+
+  .mobile-menu {
+    color: #b7b7b7;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: calc(14 / 12);
+  }
+
+  .mobile-menu.ligth-mode {
+    color: #595959;
+  }
+
+  .nav_list {
+    display: none;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .logo-text {
+    color: #ffffff;
+
+    display: none;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: calc(28 / 24);
+  }
+
+  .backdrop-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  }
+
+  .backdrop-mobile.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-mobile-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    padding-left: 20px;
+    z-index: 999;
+    pointer-events: stroke;
+
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+    width: 70vw;
+    height: 90vh;
+    z-index: 999;
+    background-color: #171717;
+
+    border-radius: 0px 8px 8px 0px;
+
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+  }
+
+  .modal-mobile-menu.active {
+    transform: translateX(0);
+  }
+
+  .modal-mobile-menu.ligth-mode {
+    background-color: #f8f8f8;
+    color: #111111;
+  }
+
+  .modal-nav-list.mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .logo-mobile {
+    width: 48px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    height: 60px;
+  }
+
+  .modal-mobile-menu {
+    display: none;
+  }
+  .nav_list {
+    display: flex;
+    gap: 32px;
+  }
+
+  .logo-text {
+    display: inline-block;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .nav_list {
+    gap: 40px;
+  }
+}
+
+.toggle-icon {
+  fill: transparent;
+  stroke: #ffffff;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #000000, #000033);
+  filter: drop-shadow(0 0 6px #6b6969);
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.3em;
+  bottom: 0.3em;
+  background: linear-gradient(74deg, #000000, #000033, #888888);
+  transition: 0.4s;
+  animation: anima1 0.3s linear;
+}
+
+@keyframes anima1 {
+  0% {
+    transform: translateX(1.5em);
+  }
+
+  80% {
+    transform: translateX(-0.3em);
+  }
+
+  100% {
+    transform: translateX(0em);
+  }
+}
+
+.switch input:checked + .slider:before {
+  background: linear-gradient(90deg, #f47622, #ffffff);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  transform: translateX(1.5em);
+  animation: anima 0.3s linear;
+}
+
+.switch input:checked + .slider {
+  background: linear-gradient(232deg, #ffc226 9.4%, #f84119 91.91%);
+}
+
+@keyframes anima {
+  0% {
+    transform: translateX(0px);
+  }
+
+  80% {
+    transform: translateX(1.6em);
+  }
+
+  100% {
+    transform: translateX(1.4em);
+  }
+}
