@@ -67,14 +67,14 @@ async function createMarkup(array) {
             <h3 class="trends__name">${title}</h3>
             <p class="trends__ganre">${genreName}|${year}</p>
           </div>
-          <div class="raiting-body">
-            <div class="rating-active" style="width: ${(vote_average)*10}px">
-              <div class="rating-active-wrapper">
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
-                <span class="rating-active-color">★</span>
+          <div class="raiting__body">
+            <div class="rating__active" style="width: ${(vote_average)*10}px">
+              <div class="rating__active__wrapper">
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
               </div>
             </div>
           </div>
@@ -113,7 +113,6 @@ async function cardGenres(genres) {
   try {
     const genresApi =  await loadGenre()
     const newArr = genresApi.filter((elem=> elem.id === genres[0])).map(el=>el.name).join(" ")
-    console.log(newArr);
     
     return newArr;
   } catch (error) {
