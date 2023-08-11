@@ -32,11 +32,12 @@
   justify-content: center;
 }
 
-/* .results {
+.results {
   display: flex;
+  column-gap: 16px;
+  row-gap: 32px;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 48px;
 }
 
 .card {
@@ -46,23 +47,23 @@
 .card-content {
   border: none;
   border-radius: 5px;
-} */
-/* For desktop */
+}
+/* Для экранов >= 1280px */
 @media (min-width: 1280px) {
   .pagination-cycle-btn {
     width: 40px;
     height: 40px;
     padding: 5px 10px;
   }
-  /* .card {
+  .card {
     width: calc(33.33% - 10px);
     min-width: 395px;
     min-height: 574px;
     margin-bottom: 20px;
-  } */
+  }
 }
 
-/* For tablet */
+/* Для экранов >= 768px и < 1280px */
 @media (min-width: 768px) and (max-width: 1279px) {
   .pagination-cycle-btn {
     width: 40px;
@@ -77,15 +78,15 @@
     width: 44px;
     height: 44px;
   }
-  /* .card {
+  .card {
     width: calc(33.33% - 10px);
     max-width: 224px;
     height: 325px;
     margin-bottom: 20px;
-  } */
+  }
 }
 
-/* For mobile */
+/* Для экранов < 768px */
 @media (max-width: 767px) {
   .pagination-cycle-btn {
     display: flex;
@@ -114,8 +115,8 @@
     width: 40px;
     height: 40px;
   }
-  /* .results {
-    flex-direction: column;
+  .results {
+    column-gap: 16px;
     align-items: center;
   }
 
@@ -123,7 +124,7 @@
     width: 280px;
     height: 406px;
     margin: 0 0 20px;
-  } */
+  }
 }
 .pagination {
   display: flex;
@@ -139,7 +140,7 @@
   border: 1px solid #ccc;
   color: #ccc;
   border-radius: 50%;
-  margin: 0 8px;
+  margin: 0 8px; /* Уменьшили маргин до 8px */
 }
 
 .pagination-num-btn {
@@ -149,7 +150,7 @@
 
 .pagination-cycle-btn:first-child,
 .pagination-cycle-btn:last-child {
-  margin: 0 12px;
+  margin: 0 12px; /* Добавили маргин для крайних кнопок */
 }
 
 .pagination-cycle-btn:hover {

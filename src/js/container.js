@@ -1,155 +1,216 @@
-console.log(123);
-document.addEventListener("DOMContentLoaded", function () {
-    const searchButton = document.querySelector('.external-button');
-    const searchInput = document.querySelector('.search-input');
-    const resultsContainer = document.getElementById('results');
-    const trendingContainer = document.getElementById('trendingContainer');
-    const apiKey = '5e0b2043a7bdefdf129debb784bbe1f7'; // Replace with your TMDB API key
-    let allResults = [];
-    let currentPage = 1;
-    const itemsPerPage = 10;
+import axios from "axios";
+const BASE_URL = "https://api.themoviedb.org/3/";
+// const ITEMS_PER_PAGE = 10; // Number of items per page
+const searchButton = document.querySelector('.external-button');
+searchButton.addEventListener('click', handleSearch);
+let currentPage = 1;
 
-    searchButton.addEventListener('click', function () {
-        const query = searchInput.value;
-        fetchMovieData(query);
-        // console.log(465);
-    });
+async function createMarkup(array) {
+  const markupArray = await Promise.all(array.map(async ({
+    id,
+    genre_ids,
+    poster_path,
+    release_date,
+    title,
+    vote_average,
+  }) => {
+    
+    const genreName = await cardGenres(genre_ids);
+    const year = getYear(release_date);
 
-    // Function to fetch movie data based on search query
-    function fetchMovieData(query) {
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+    return `<li class="trends__item" id=${id}>
+        <img
+          src="https://image.tmdb.org/t/p/original/${poster_path}"
+          alt="${title}"
+          class="trends__photo"
+        />
+        <div class="trends__description">
+          <div class="trends__info">
+            <h3 class="trends__name">${title}</h3>
+            <p class="trends__ganre">${genreName}|${year}</p>
+          </div>
+          <div class="raiting__body">
+            <div class="rating__active" style="width: ${(vote_average)*10}px">
+              <div class="rating__active__wrapper">
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+                <span class="rating__active__color">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>`;
+  }));
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                allResults = data.results;
-                currentPage = 1;
-                displayResultsOnPage(allResults, currentPage);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+  return markupArray.join('');
+}
+
+async function loadGenre() {
+
+  const response = await axios.get(`${BASE_URL}genre/movie/list`,{
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+    },
+    params: {
+      language: 'en'
     }
+  })
+  
+  const data = response.data;
+  const genres = data.genres
+  return genres;
+}
+async function cardGenres(genres) {
+  const defaultGen = "Nice film"
+  if(genres.length === 0){
+    return defaultGen;
+  }
+  try {
+    const genresApi =  await loadGenre()
+    const newArr = genresApi.filter((elem=> elem.id === genres[0])).map(el=>el.name).join(" ")
+    
+    return newArr;
+  } catch (error) {
+    console.log(error.code);
+  }
+  
+}
+function getYear(date) {
+  date = date.split("-");
+  return date[0];
+}
 
-    function displayResultsOnPage(results, page) {
-        resultsContainer.innerHTML = '<div><p>12314567</p></div>';
 
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const pageResults = results.slice(startIndex, endIndex);
 
-        if (pageResults.length === 0) {
-            resultsContainer.textContent = 'No results found.';
-            updatePageNumbers(0);
-            return;
-        }
-
-        pageResults.forEach(result => {
-            const resultElement = document.createElement('div');
-            resultElement.textContent = result.title;
-            resultsContainer.appendChild(resultElement);
+async function populateTrendingMovies(page) {
+    try {
+        const response = await axios.get(`${BASE_URL}trending/movie/day`, {
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+            },
+            params: {
+                language: 'en',
+                page: page
+            }
         });
 
-        const totalPages = Math.ceil(results.length / itemsPerPage);
-        updatePageNumbers(totalPages);
+        const movies = response.data.results;
+        const markup = await createMarkup(movies);
+
+        const trendingContainer = document.getElementById('trendingContainer');
+        trendingContainer.innerHTML = `<div class="results">${markup}</div>`;
+    } catch (error) {
+        console.log(error.code);
+    }
+}
+
+async function handleSearch(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const searchInput = document.getElementById('searchInput');
+    const searchQuery = searchInput.value.trim(); // Get the search query and remove leading/trailing spaces
+
+    if (searchQuery === '') {
+        return; // If the search query is empty, do nothing
     }
 
-    // Function to update the UI with page numbers
-    function updatePageNumbers(totalPages) {
-        const paginationNumBtn = document.querySelector('.pagination-num-btn');
-        paginationNumBtn.innerHTML = '';
+    try {
+        const response = await axios.get(`${BASE_URL}search/movie`, {
+            headers: {
+                accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+            },
+            params: {
+                language: 'en',
+                query: searchQuery
+            }
+        });
 
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement('button');
-            btn.className = 'pagination-cycle-btn';
-            btn.textContent = i.toString();
-            btn.addEventListener('click', () => {
-                currentPage = i;
-                displayResultsOnPage(allResults, currentPage);
-            });
-            paginationNumBtn.appendChild(btn);
-        }
+        const searchResults = response.data.results;
+        const markup = await createMarkup(searchResults);
+
+        const trendingContainer = document.getElementById('trendingContainer');
+        trendingContainer.innerHTML = `<div class="results">${markup}</div>`;
+    } catch (error) {
+        console.log(error.code);
     }
+}
 
-    // Attach event listeners to previous and next buttons
-    document.getElementById('prevPage').addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            displayResultsOnPage(allResults, currentPage);
-        }
-    });
-
-    document.getElementById('nextPage').addEventListener('click', () => {
-        const totalPages = Math.ceil(allResults.length / itemsPerPage);
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayResultsOnPage(allResults, currentPage);
-        }
-    });
-
-    // Function to fetch and display trending movies of the week
-    function fetchTrendingMovies() {
-        const trendingUrl = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
-
-        fetch(trendingUrl)
-            .then(response => response.json())
-            .then(data => {
-                const trendingMovies = data.results;
-                if (trendingMovies.length === 0) {
-                    trendingContainer.textContent = 'No trending movies found.';
-                    return;
-                }
-                displayResultsOnPage(trendingMovies, currentPage);
-            })
-            .catch(error => {
-                console.error('Error fetching trending movies:', error);
-            });
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent the default form submission behavior
+        handleSearch(event);
     }
-
-    // Call the fetchTrendingMovies function on page load
-    fetchTrendingMovies();
-
-    // const clearButton = document.querySelector('.clear-button');
-    // clearButton.addEventListener('click', () => {
-    //     searchInput.value = '';
-    //     resultsContainer.innerHTML = '';
-    //     updatePageNumbers(0);
-    // });
 });
 
+populateTrendingMovies(currentPage);
+
+async function updatePaginationButtons(currentPage, totalPages) {
+    const paginationNumBtn = document.querySelector('.pagination-num-btn');
+    paginationNumBtn.innerHTML = ''; // Clear existing buttons
+
+    const numButtonsToShow = 5; // Number of page buttons to show
+    const halfNumButtons = Math.floor(numButtonsToShow / 2);
+
+    let startPage = Math.max(currentPage - halfNumButtons, 1);
+    let endPage = Math.min(startPage + numButtonsToShow - 1, totalPages);
+
+    if (totalPages - endPage < halfNumButtons) {
+        startPage = Math.max(endPage - numButtonsToShow + 1, 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.classList.add('pagination-cycle-btn');
+        pageBtn.textContent = i < 10 ? `0${i}` : `${i}`;
+        pageBtn.id = `page${i}`;
+        pageBtn.addEventListener('click', () => onPageClick(i));
+        paginationNumBtn.appendChild(pageBtn);
+    }
+
+    // Add "..." button if there are more pages available
+    if (endPage < totalPages) {
+        const morePagesBtn = document.createElement('button');
+        morePagesBtn.classList.add('pagination-btn');
+        morePagesBtn.textContent = '...';
+        paginationNumBtn.appendChild(morePagesBtn);
+    }
+}
+// Function to handle page button click
+function onPageClick(pageNumber) {
+    currentPage = pageNumber;
+    populateTrendingMovies(currentPage);
+    updatePaginationButtons(currentPage, totalPages); // Update the pagination buttons
+}
+
+function onNextPageClick() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        populateTrendingMovies(currentPage);
+        updatePaginationButtons(currentPage, totalPages);
+    }
+}
+
+// Function to handle previous page click
+function onPrevPageClick() {
+    if (currentPage > 1) {
+        currentPage--;
+        populateTrendingMovies(currentPage);
+        updatePaginationButtons(currentPage, totalPages);
+    }
+}
 
 
-console.log(321);
 
 
+// Add click event listeners for pagination buttons
+document.getElementById('nextPage').addEventListener('click', onNextPageClick);
+document.getElementById('prevPage').addEventListener('click', onPrevPageClick);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// populateTrendingMovies(currentPage);
 
