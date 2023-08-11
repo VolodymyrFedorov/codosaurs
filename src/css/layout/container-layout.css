@@ -34,9 +34,10 @@
 
 .results {
   display: flex;
+  column-gap: 16px;
+  row-gap: 32px;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 48px;
 }
 
 .card {
@@ -115,7 +116,7 @@
     height: 40px;
   }
   .results {
-    flex-direction: column;
+    column-gap: 16px;
     align-items: center;
   }
 
