@@ -1,9 +1,28 @@
 import axios from "axios";
+
 const BASE_URL = "https://api.themoviedb.org/3/";
-// const ITEMS_PER_PAGE = 10; // Number of items per page
+const ITEMS_PER_PAGE = 10;
 const searchButton = document.querySelector('.external-button');
-searchButton.addEventListener('click', handleSearch);
+const searchInput = document.getElementById('searchInput');
+const trendingContainer = document.getElementById('trendingContainer');
+const paginationNumBtn = document.querySelector('.pagination-num-btn');
+const prevPageBtn = document.getElementById('prevPage');
+const nextPageBtn = document.getElementById('nextPage');
 let currentPage = 1;
+let totalPages = 1;
+
+prevPageBtn.addEventListener('click', () => onPageClick(currentPage - 1));
+nextPageBtn.addEventListener('click', () => onPageClick(currentPage + 1));
+document.getElementById('sortByYear').addEventListener('change', handleSort);
+document.getElementById('sortByGenre').addEventListener('change', handleSort);
+
+searchButton.addEventListener('click', handleSearch);
+searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        handleSearch(event);
+    }
+});
 
 async function createMarkup(array) {
   const markupArray = await Promise.all(array.map(async ({
@@ -18,7 +37,7 @@ async function createMarkup(array) {
     const genreName = await cardGenres(genre_ids);
     const year = getYear(release_date);
 
-    return `<li class="trends__item" id=${id}>
+    return `<li class="trends__item trends-box" id=${id}>
         <img
           src="https://image.tmdb.org/t/p/original/${poster_path}"
           alt="${title}"
@@ -83,14 +102,13 @@ function getYear(date) {
   return date[0];
 }
 
-
-
 async function populateTrendingMovies(page) {
+    
     try {
         const response = await axios.get(`${BASE_URL}trending/movie/day`, {
             headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
             },
             params: {
                 language: 'en',
@@ -102,9 +120,12 @@ async function populateTrendingMovies(page) {
         const markup = await createMarkup(movies);
 
         const trendingContainer = document.getElementById('trendingContainer');
-        trendingContainer.innerHTML = `<div class="results">${markup}</div>`;
+        trendingContainer.innerHTML = markup;
+
+        totalPages = response.data.total_pages; // Update total pages
+        updatePaginationButtons(currentPage, totalPages);
     } catch (error) {
-        console.log(error.code);
+        console.log(error);
     }
 }
 
@@ -139,78 +160,139 @@ async function handleSearch(event) {
         console.log(error.code);
     }
 }
+// Function to fetch and populate sort options for years and genres
+async function populateSortOptions() {
+    try {
+        const genres = await loadGenre();
+        const sortByYear = document.getElementById('sortByYear');
+        const sortByGenre = document.getElementById('sortByGenre');
 
-const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent the default form submission behavior
-        handleSearch(event);
+        // Populate sort by year options
+        const currentYear = new Date().getFullYear();
+
+        // Add default option for year
+        const defaultYearOption = document.createElement('option');
+        defaultYearOption.value = '';
+        defaultYearOption.textContent = 'Year';
+        sortByYear.appendChild(defaultYearOption);
+
+        for (let year = currentYear; year >= 1900; year--) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            sortByYear.appendChild(option);
+        }
+
+        // Populate sort by genre options
+        const defaultGenreOption = document.createElement('option');
+        defaultGenreOption.value = '';
+        defaultGenreOption.textContent = 'All';
+        sortByGenre.appendChild(defaultGenreOption);
+
+        for (const genre of genres) {
+            const option = document.createElement('option');
+            option.value = genre.id;
+            option.textContent = genre.name;
+            sortByGenre.appendChild(option);
+        }
+    } catch (error) {
+        console.log(error.code);
     }
-});
+}
+// Function to handle sorting by year and genre
+async function handleSort() {
+    const sortByYear = document.getElementById('sortByYear');
+    const sortByGenre = document.getElementById('sortByGenre');
 
-populateTrendingMovies(currentPage);
+    const selectedYear = sortByYear.value;
+    const selectedGenre = sortByGenre.value;
 
-async function updatePaginationButtons(currentPage, totalPages) {
-    const paginationNumBtn = document.querySelector('.pagination-num-btn');
+    try {
+        const response = await axios.get(`${BASE_URL}discover/movie`, {
+            headers: {
+                accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+            },
+            params: {
+                language: 'en',
+                sort_by: 'popularity.desc', // You can change the sorting method here
+                with_genres: selectedGenre,
+                primary_release_year: selectedYear,
+                page: 1
+            }
+        });
+
+        const sortedResults = response.data.results;
+        const markup = await createMarkup(sortedResults);
+
+        trendingContainer.innerHTML = markup;
+    } catch (error) {
+        console.log(error.code);
+    }
+}
+
+// Initialize the page
+async function initializePage() {
+    await populateSortOptions();
+    populateTrendingMovies(currentPage);
+}
+
+initializePage(); // Call this function to initialize the page
+
+function onPageClick(pageNumber) {
+    if (pageNumber < 1 || pageNumber > totalPages) {
+        return;
+    }
+    
+    currentPage = pageNumber;
+    populateTrendingMovies(currentPage);
+    updatePaginationButtons(currentPage, totalPages);
+}
+
+function updatePaginationButtons(currentPage, totalPages) {
     paginationNumBtn.innerHTML = ''; // Clear existing buttons
 
-    const numButtonsToShow = 5; // Number of page buttons to show
-    const halfNumButtons = Math.floor(numButtonsToShow / 2);
-
-    let startPage = Math.max(currentPage - halfNumButtons, 1);
-    let endPage = Math.min(startPage + numButtonsToShow - 1, totalPages);
-
-    if (totalPages - endPage < halfNumButtons) {
-        startPage = Math.max(endPage - numButtonsToShow + 1, 1);
+    // Back arrow
+    if (currentPage > 1) {
+        addPageButton(paginationNumBtn, currentPage - 1, 'back');
     }
-
-    for (let i = startPage; i <= endPage; i++) {
-        const pageBtn = document.createElement('button');
-        pageBtn.classList.add('pagination-cycle-btn');
-        pageBtn.textContent = i < 10 ? `0${i}` : `${i}`;
-        pageBtn.id = `page${i}`;
-        pageBtn.addEventListener('click', () => onPageClick(i));
-        paginationNumBtn.appendChild(pageBtn);
+    
+    // Current page
+    addPageButton(paginationNumBtn, currentPage, 'current');
+    
+    // Next page after current page
+    if (currentPage < totalPages) {
+        addPageButton(paginationNumBtn, currentPage + 1, 'next');
     }
-
-    // Add "..." button if there are more pages available
-    if (endPage < totalPages) {
+    
+    // After next page
+    if (currentPage < totalPages - 1) {
+        addPageButton(paginationNumBtn, currentPage + 2);
+    }
+    
+    // Three dots
+    if (currentPage < totalPages - 2) {
         const morePagesBtn = document.createElement('button');
         morePagesBtn.classList.add('pagination-btn');
         morePagesBtn.textContent = '...';
         paginationNumBtn.appendChild(morePagesBtn);
     }
-}
-// Function to handle page button click
-function onPageClick(pageNumber) {
-    currentPage = pageNumber;
-    populateTrendingMovies(currentPage);
-    updatePaginationButtons(currentPage, totalPages); // Update the pagination buttons
+    
+    // 24 page
+    addPageButton(paginationNumBtn, currentPage + 23);
 }
 
-function onNextPageClick() {
-    if (currentPage < totalPages) {
-        currentPage++;
-        populateTrendingMovies(currentPage);
-        updatePaginationButtons(currentPage, totalPages);
+function addPageButton(parentElement, pageNum, btnType = '') {
+    const pageBtn = document.createElement('button');
+    pageBtn.classList.add('pagination-cycle-btn');
+    pageBtn.textContent = pageNum < 10 ? `0${pageNum}` : `${pageNum}`;
+    
+    if (btnType === 'current') {
+        pageBtn.classList.add('current-page-btn');
     }
+
+    pageBtn.addEventListener('click', () => onPageClick(pageNum));
+    parentElement.appendChild(pageBtn);
 }
 
-// Function to handle previous page click
-function onPrevPageClick() {
-    if (currentPage > 1) {
-        currentPage--;
-        populateTrendingMovies(currentPage);
-        updatePaginationButtons(currentPage, totalPages);
-    }
-}
-
-
-
-
-// Add click event listeners for pagination buttons
-document.getElementById('nextPage').addEventListener('click', onNextPageClick);
-document.getElementById('prevPage').addEventListener('click', onPrevPageClick);
-
-// populateTrendingMovies(currentPage);
-
+populateTrendingMovies(currentPage);

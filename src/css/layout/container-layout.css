@@ -1,14 +1,12 @@
 .container-layout {
-  padding-top: 20px;
+  padding-top: 60px;
 }
-
 .search-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
 }
-
 .search-input {
   width: 334px;
   height: 48px;
@@ -18,7 +16,19 @@
   background-color: #111111;
   color: #ccc;
 }
-
+.sort-input {
+  width: 95px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #111111;
+  color: #ccc;
+  margin-left: 10px;
+  padding-left: 20px;
+}
+.sort-input:last-child {
+  margin-right: 24px;
+}
 .external-button {
   width: 48px;
   height: 48px;
@@ -31,7 +41,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .results {
   display: flex;
   column-gap: 16px;
@@ -39,14 +48,53 @@
   flex-wrap: wrap;
   margin-top: 48px;
 }
-
-.card {
-  background-color: #ffffff;
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
-
-.card-content {
+.pagination-cycle-btn {
   border: none;
-  border-radius: 5px;
+  background-color: #111111;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  color: #ccc;
+  border-radius: 50%;
+  margin: 0 8px; /* Уменьшили маргин до 8px */
+}
+.pagination-num-btn {
+  display: flex;
+  align-items: center;
+}
+.pagination-cycle-btn:first-child,
+.pagination-cycle-btn:last-child {
+  margin: 0 12px; /* Добавили маргин для крайних кнопок */
+}
+.current-page-btn {
+  border: none;
+  color: #fff;
+  background: linear-gradient(130deg, #ffc226 30%, #f84119 100%);
+}
+.pagination-btn {
+  background-color: #111111;
+  color: #ccc;
+  border: none;
+}
+.pagination-arrow-btn {
+  background-color: #111111;
+  color: #ccc;
+  border: none;
+}
+.arrow-btn-svg {
+  stroke: #ffffff;
+  width: 28px;
+  height: 28px;
+}
+.search-svg {
+  stroke: #ffffff;
+  width: 18px;
+  height: 18px;
 }
 /* Для экранов >= 1280px */
 @media (min-width: 1280px) {
@@ -55,14 +103,11 @@
     height: 40px;
     padding: 5px 10px;
   }
-  .card {
-    width: calc(33.33% - 10px);
-    min-width: 395px;
-    min-height: 574px;
-    margin-bottom: 20px;
+  .search-svg {
+    width: 20px;
+    height: 20px;
   }
 }
-
 /* Для экранов >= 768px и < 1280px */
 @media (min-width: 768px) and (max-width: 1279px) {
   .pagination-cycle-btn {
@@ -78,14 +123,7 @@
     width: 44px;
     height: 44px;
   }
-  .card {
-    width: calc(33.33% - 10px);
-    max-width: 224px;
-    height: 325px;
-    margin-bottom: 20px;
-  }
 }
-
 /* Для экранов < 768px */
 @media (max-width: 767px) {
   .pagination-cycle-btn {
@@ -97,12 +135,10 @@
     font-size: 12px;
     padding: 7px 6px;
   }
-
   .pagination-btn {
     font-size: 10px;
     padding: 8px 10px;
   }
-
   .pagination-arrow-btn {
     font-size: 20px;
     padding: 5px 10px;
@@ -119,57 +155,8 @@
     column-gap: 16px;
     align-items: center;
   }
-
-  .card {
-    width: 280px;
-    height: 406px;
-    margin: 0 0 20px;
+  .arrow-btn-svg {
+    width: 20px;
+    height: 20px;
   }
-}
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination-cycle-btn {
-  border: none;
-  background-color: #111111;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  color: #ccc;
-  border-radius: 50%;
-  margin: 0 8px; /* Уменьшили маргин до 8px */
-}
-
-.pagination-num-btn {
-  display: flex;
-  align-items: center;
-}
-
-.pagination-cycle-btn:first-child,
-.pagination-cycle-btn:last-child {
-  margin: 0 12px; /* Добавили маргин для крайних кнопок */
-}
-
-.pagination-cycle-btn:hover {
-  background-color: linear-gradient(130deg, #ffc226 30%, #f84119 100%);
-}
-
-.pagination-btn {
-  background-color: #111111;
-  color: #ccc;
-  border: none;
-}
-
-.pagination-arrow-btn {
-  background-color: #111111;
-  color: #ccc;
-  border: none;
-}
-.search-svg {
-  stroke: #ffffff;
-  width: 20px;
-  height: 20px;
 }
