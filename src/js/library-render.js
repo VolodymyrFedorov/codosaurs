@@ -1,22 +1,19 @@
-import axios from "axios";
-
-const BASE_URL = 'https://api.themoviedb.org/3/'
-//? поставить ошибку выше, добавить ей класс 
-//import { loadLs, saveLs, KEY } from "./modal";
-export const KEY = "Library"; //!  нужно убрать
+import { loadLs, KEY } from "./modal";
+import { KEY } from "./modal";
 const refs = {
     ulEl : document.querySelector(".trends__list"),
     btnLoad : document.querySelector(".js-load"),
     myLibContainer : document.querySelector('.js-mylib-container'),
     searchEl : document.querySelector('#genre-search'),
 }
-// ?===========
+
+
 let genreArr = [];
 let forCheckRender;
 
 const filmsFromLs = loadLs(KEY);
 
-renderMarkup(filmsFromLs);
+lengthCheck(filmsFromLs);                                // проверяем и догружаем все фильмы 
 
 if(!filmsFromLs || !filmsFromLs.length) {               // перевірка локал сторіджа
     refs.myLibContainer.innerHTML = `<div class="not-found-film-library">
@@ -50,8 +47,8 @@ function onChangeSelect(e) {
     if(genreToFind === 'All Genres'){
       lengthCheck(filmsFromLs);
       return
-    }  // перед ретурном запхати функцію рендера(ретурн залишити!!!!!!!!!!!!!)
-
+    }                            // перед ретурном запхати функцію рендера(ретурн залишити!!!!!!!!!!!!!)
+     
     const filterredFilms = filmsFromLs.filter(el=>{
         return (el.genres.some(el=>el.name.includes(genreToFind)))
     })
@@ -59,24 +56,28 @@ function onChangeSelect(e) {
 }
 
 function lengthCheck(obj) {
-  if(obj.length < 9){
-    renderMarkup(obj);
+  const filmsInCheckFu = [...obj];                     // переменная для проверок
+  if(filmsInCheckFu.length < 9){                       // если фильмов < 9 просто выводим
+    renderMarkup(filmsInCheckFu);
+    refs.btnLoad.classList.add("visually-hidden");
     return
-    } const toRender = obj.slice(0, 9);
-    obj.splice(0,9);
-    forCheckRender = [...obj]
-    console.log(forCheckRender);
+    } const toRender = filmsInCheckFu.slice(0, 9);      // если больше выводим первые 9
+    filmsInCheckFu.splice(0,9);                         // берем все фильмы с 9-го удяляя первые 8
+    forCheckRender = [...filmsInCheckFu];              
     renderMarkup(toRender);
     refs.btnLoad.classList.remove("visually-hidden");
-    refs.btnLoad.addEventListener("click", onLoadMore) 
+    refs.btnLoad.addEventListener("click", onLoadMore);
 }
 
-function onLoadMore() {
-  console.log(forCheckRender);
+function onLoadMore() {                                  // проверяем и отображаем по нажатию кнопки 
     if(forCheckRender.length < 9){
         renderMarkup(forCheckRender);
-        refs.btnLoad.classList.add("visually-hidden")
-        } forCheckRender.splice(0,9);
+        refs.btnLoad.classList.add("visually-hidden");
+        return
+        } const toRender = forCheckRender.slice(0, 9);
+        renderMarkup(toRender);
+        forCheckRender.splice(0,9);
+
 }
 function renderLibrary(libraryObj) {
 
@@ -105,25 +106,13 @@ const markupArray = libraryObj.map(({id, genres, poster_path, release_date, titl
                 </div>
               </div>
             </li>`})
-         
-        console.log(markupArray);
         return markupArray;
       }
-export function renderMarkup(array) {
+function renderMarkup(array) {
     const markup = renderLibrary(array);
     refs.ulEl.insertAdjacentHTML("beforeend", markup);
   }
-//!  нужно убрать
 function getYear(date) {
     date = date.split("-");
     return date[0];
   }
-export function loadLs(key) {
-    const arrJs = localStorage.getItem(key);                       
-    return arr = JSON.parse(arrJs);
- }
-export function saveLs (key, value) {
-    const serializedState = JSON.stringify(value);
-    localStorage.setItem(key, serializedState); 
-}
-// !=====
