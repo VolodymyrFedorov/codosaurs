@@ -5,7 +5,7 @@ const BASE_URL = 'https://api.themoviedb.org/3/'
 //import { loadLs, saveLs, KEY } from "./modal";
 export const KEY = "Library"; //!  нужно убрать
 const refs = {
-    ulEl : document.querySelector(".library-box"),
+    ulEl : document.querySelector(".trends__list"),
     btnLoad : document.querySelector(".js-load")
 }
 
