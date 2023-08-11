@@ -32,7 +32,8 @@
     top: 0;
     left: 0;
     overflow-y: scroll;
-
+    
+    z-index: 99999;
 }
 .modal{
     padding: 52px 16px ;
