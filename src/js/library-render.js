@@ -82,7 +82,7 @@ function onLoadMore() {                                  // проверяем �
 function renderLibrary(libraryObj) {
 
 const markupArray = libraryObj.map(({id, genres, poster_path, release_date, title, vote_average}) => {
-    return`<li class="library-list" id=${id}>
+    return`<li class="library-list trends-box" id=${id}>
               <img
                 src="https://image.tmdb.org/t/p/original/${poster_path}"
                 alt="${title}"
@@ -105,7 +105,7 @@ const markupArray = libraryObj.map(({id, genres, poster_path, release_date, titl
                   </div>
                 </div>
               </div>
-            </li>`})
+            </li>`}).join(" ")
         return markupArray;
       }
 function renderMarkup(array) {
