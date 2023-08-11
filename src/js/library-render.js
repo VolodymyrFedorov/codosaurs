@@ -71,7 +71,6 @@ function lengthCheck(obj) {
 
 function onLoadMore() {                                  // проверяем и отображаем по нажатию кнопки 
     if(forCheckRender.length < 9){
-        console.log(forCheckRender);
         renderMarkup(forCheckRender);
         refs.btnLoad.classList.add("visually-hidden");
         return
