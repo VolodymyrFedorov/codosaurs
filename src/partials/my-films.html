@@ -1,34 +1,10 @@
 <section class="my-films">
-    <select id="genre-search"></select>
+    <div class="container js-mylib-container">
+    <select id="genre-search">
+        <option class="mylib-options" selected>All Genres</option>
+    </select>
 
-    <ul class="trends__list"></ul>
-    <style>
-        .load-more{
-        cursor: pointer;
-    color: #000;
-    background: linear-gradient(141.22deg,#ffc226 9.4%,#f84119 91.91%);
-    border: 1px solid #0000;
-    border-radius: 74px;
-    min-width: 140px;
-    margin: 30px auto 50px;
-    padding: 12px 24px;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.33;
-    display: block;}
-    .visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        margin: -1px;
-        border: 0;
-        padding: 0;
-        white-space: nowrap;
-        clip-path: inset(100%);
-        clip: rect(0 0 0 0);
-        overflow: hidden;
-      }
+    <ul class="library-box"></ul>
 
-    </style>
-    <button type="button" class="load-more js-load visually-hidden">Load more</button>
+</div>
 </section>
