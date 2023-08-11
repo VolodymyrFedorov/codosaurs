@@ -1,14 +1,18 @@
 <section class="container">
     <div class="container-layout">
         <div class="search-container">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search">
+
             <div class="sort-options">
-                <label for="sortByYear"></label>
-                <select class="sort-input" id="sortByYear">
+                <select class="sort-input sort-genre-input" id="sortByGenre">
                 </select>
-                <label for="sortByGenre"></label>
-                <select class="sort-input" id="sortByGenre">
+                <select class="sort-input sort-year-input" id="sortByYear">
                 </select>
+            </div>
+            <div class="input-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search">
+                <svg class="clear-svg" id="clearButton" style="display: none;">
+                    <use href="./image/sprite2.svg#icon-clear-input"></use>
+                </svg>
             </div>
             <button type="submit" class="external-button">
                 <svg class="search-svg">
