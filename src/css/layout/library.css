@@ -1,9 +1,27 @@
-<section class="my-films">
-    <select id="genre-search"></select>
+/* .library-list{
+    width: 280px;
+    margin: 0 auto;
+    border-radius: 5px;
+    flex-basis: 100%;
+    position: relative;
+}  
+@media screen and (min-width: 768px) {
+    .library-list{
+    display: block;
+    width: 224px;
+    flex-basis: calc(33.33% - 10px);;
+    margin: 0;
+    }
 
-    <ul class="library-box"></ul>
-    <style>
-        .load-more{
+    .library-box{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    justify-content: center;
+    gap: 16px;
+    row-gap: 28px;
+    display: flex;
+
+     .load-more{
         cursor: pointer;
     color: #000;
     background: linear-gradient(141.22deg,#ffc226 9.4%,#f84119 91.91%);
@@ -15,8 +33,9 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 1.33;
-    display: block;}
-    .visually-hidden {
+    display: block;
+}
+.visually-hidden {
         position: absolute;
         width: 1px;
         height: 1px;
@@ -28,7 +47,7 @@
         clip: rect(0 0 0 0);
         overflow: hidden;
       }
+    
 
-    </style>
-    <button type="button" class="load-more js-load visually-hidden">Load more</button>
-</section>
+    }
+} */
