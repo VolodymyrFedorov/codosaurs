@@ -2,6 +2,14 @@
     <div class="container-layout">
         <div class="search-container">
             <input type="text" class="search-input" id="searchInput" placeholder="Search">
+            <div class="sort-options">
+                <label for="sortByYear"></label>
+                <select class="sort-input" id="sortByYear">
+                </select>
+                <label for="sortByGenre"></label>
+                <select class="sort-input" id="sortByGenre">
+                </select>
+            </div>
             <button type="submit" class="external-button">
                 <svg class="search-svg">
                     <use href="./image/sprite.svg#search"></use>
@@ -9,16 +17,21 @@
             </button>
         </div>
 
-        <ul class="trending-container trends__list" id="trendingContainer">
+        <div class="results">
+            <ul class="trending-container trends__list" id="trendingContainer">
 
-        </ul>
-
+            </ul>
+        </div>
         <div class="pagination">
-            <button class="pagination-arrow-btn" id="prevPage"> &lt; </button>
+            <button class="pagination-arrow-btn" id="prevPage"> <svg class="arrow-btn-svg">
+                    <use href="./image/sprite2.svg#icon-arrow-prev"></use>
+                </svg> </button>
             <div class="pagination-num-btn">
                 <!-- Numeric page buttons will be populated dynamically -->
             </div>
-            <button class="pagination-arrow-btn" id="nextPage"> &gt; </button>
+            <button class="pagination-arrow-btn" id="nextPage"> <svg class="arrow-btn-svg">
+                    <use href="./image/sprite2.svg#icon-arrow-next"></use>
+                </svg> </button>
         </div>
     </div>
 </section>
