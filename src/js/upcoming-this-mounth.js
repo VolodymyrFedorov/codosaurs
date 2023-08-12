@@ -69,9 +69,10 @@ export function upcomingSectionMarkup(randomFilm) {
                 const arr = loadLs(KEY);
                 if(arr) toLs = [...arr];
                 if(toLs.some(el=>el.id === filmId)) btnLS.textContent = "Remove from my library";
-
                 btnLS.addEventListener('click', ()=> {
                     try {
+                        const arr = loadLs(KEY);
+                        if(arr) toLs = [...arr]
                         if(!toLs.some(el=>el.id=== (+filmId))) {
                             toLs.push(randomFilm);
                             saveLs(KEY, toLs);

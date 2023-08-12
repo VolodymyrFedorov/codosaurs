@@ -37,7 +37,8 @@
     .library-list{
     display: block;
     width: 224px;
-    flex-basis: calc(33.33% - 10px);;
+    /* flex-basis: calc(33.33% - 16px); */
+    flex-basis: calc((100% - (16px * 2)) / 3);
     margin: 0;
     }
 
