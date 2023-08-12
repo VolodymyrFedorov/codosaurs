@@ -1,6 +1,6 @@
 import { swiper } from './swiper';
 import { renderHeroSlider } from './heroUi';
-// import { onWatchTrailer } from './trailer-modal';
+import { onWatchTrailer } from './trailer-modal';
 import { getTrending } from './api';
 import { Notify } from 'notiflix';
 
@@ -49,7 +49,7 @@ function createRandomMoviesArr(moviesArr, numberOfMovies) {
   return randomMoviesArr;
 }
 
-// document.addEventListener('click', onWatchTrailer);
+document.addEventListener('click', onWatchTrailer);
 
 export { heroRefs };
 export { swiper };
