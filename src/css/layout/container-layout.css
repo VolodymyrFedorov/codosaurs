@@ -8,6 +8,7 @@
   /* gap: 10px; */
 }
 .input-container {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -21,7 +22,7 @@
   color: #ccc;
 }
 .sort-input {
-  width: 95px;
+  min-width: 95px;
   height: 48px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -31,10 +32,11 @@
   margin-right: 10px;
 }
 .clear-svg {
+  position: absolute;
   width: 18px;
   height: 18px;
   stroke: #ccc;
-  z-index: 10;
+  right: 24px;
 }
 
 .external-button {
@@ -162,13 +164,12 @@
   .search-input {
     width: 224px;
     height: 40px;
-    margin-top: 12px;
   }
   .sort-input {
     height: 40px;
   }
   .sort-genre-input {
-    width: 173px;
+    min-width: 173px;
   }
   .sort-year-input {
     width: 95px;
@@ -185,5 +186,11 @@
   .arrow-btn-svg {
     width: 20px;
     height: 20px;
+  }
+  .clear-svg {
+    right: 11px;
+  }
+  .input-container {
+    margin-top: 12px;
   }
 }
