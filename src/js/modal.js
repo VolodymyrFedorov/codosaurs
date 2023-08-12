@@ -6,12 +6,59 @@ const refs =  {
     //card : document.querySelector(".trends__item"),
     modalBox : document.querySelector(".js-box"),
     body : document.body,
-
+    hero : document.querySelector(".hero")
 }
 const BASE_URL='https://api.themoviedb.org/3/movie/'
 refs.ulEl.addEventListener("click", openModal)
 let toLs = [];
 export const KEY = "Library";
+refs.hero.addEventListener("click", onBtnMoDet)
+async function onBtnMoDet(event) {
+    if (event.target.classList.contains("is-id")) {
+    const heroId = event.target.dataset.id;
+    refs.backdrop.classList.remove("visually-hidden");
+    adEventListners();
+    try {
+        refs.modalBox.innerHTML = " "
+        const data = await findCard(heroId)
+        const cardFilm = cardMarkup(data)
+        renderCard(cardFilm);
+    
+        const btnLs = document.querySelector(".js-btn-to-ls");
+        const arr =  loadLs(KEY);
+          
+        if(arr){                                                //проверил на пустой LS, забрал данные в массив 
+        toLs = [...arr];
+    
+        if (toLs.some(el=>el.id === (+heroId))){                //проверил есть ли фильм в LS
+        btnLs.textContent = "Remove from my library"
+        }}
+    
+        btnLs.addEventListener("click", ()=>{                    //обрабатываю клик
+            try {
+            if (!toLs.some(el=>el.id === (+heroId))){            //добавляю в LS
+                toLs.push(data);
+                saveLs(KEY, toLs)                              
+                btnLs.textContent = "Remove from my library"
+                return
+            }   
+            const ind =  toLs.findIndex(el => el.id ===(+heroId)) //удаляю с LS
+            toLs.splice(ind, 1);
+            localStorage.removeItem(KEY);
+            saveLs(KEY, toLs)                                     //добавляю в LS
+            btnLs.textContent = "Add to my library"
+    
+               
+            } catch (error) {
+                console.error("Set state error: ", error.message);
+            }
+        })
+    } catch (error) {
+        console.log(error.code)
+        //! clsModal()
+     }}
+    }
+    
 
 async function findCard(id){
     const response = await axios.get(`${BASE_URL}${id}`,{
@@ -25,7 +72,6 @@ async function findCard(id){
     })
     return data = response.data;
   }
-
 async function openModal(event) {
     const liElem = event.target.closest('li');
     const cardId = liElem.getAttribute("id");                      //id для запроса
@@ -37,9 +83,7 @@ async function openModal(event) {
 if (!liElem.classList.contains(".trends__item")) {                 //открыл модадлку
 refs.backdrop.classList.remove("visually-hidden");
 }
-refs.backdrop.addEventListener("click", onBackdropClick);  
-refs.btnCls.addEventListener("click", clsModal);
-document.addEventListener('keydown', keyBoardPress);
+adEventListners()
 
 try {
     const data = await findCard(cardId)
@@ -140,4 +184,8 @@ function onBackdropClick(event) {                   //закрываю по back
     removeEvent();
 }
 }
-
+function adEventListners() {
+    refs.backdrop.addEventListener("click", onBackdropClick);  
+    refs.btnCls.addEventListener("click", clsModal);
+    document.addEventListener('keydown', keyBoardPress);   
+}
