@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.themoviedb.org/3/";
-const ITEMS_PER_PAGE = 10;
 const searchButton = document.querySelector('.external-button');
 const searchInput = document.getElementById('searchInput');
 const trendingContainer = document.getElementById('trendingContainer');
 const paginationNumBtn = document.querySelector('.pagination-num-btn');
 const prevPageBtn = document.getElementById('prevPage');
 const nextPageBtn = document.getElementById('nextPage');
+const clearButton = document.getElementById('clearButton');
 let currentPage = 1;
 let totalPages = 1;
 
@@ -160,6 +160,19 @@ async function handleSearch(event) {
         console.log(error.code);
     }
 }
+  searchInput.addEventListener('input', function() {
+            if (searchInput.value.trim() !== '') {
+                clearButton.style.display = 'inline';
+            } else {
+                clearButton.style.display = 'none';
+            }
+        });
+
+        // Add an event listener to the clear button
+        clearButton.addEventListener('click', function() {
+            searchInput.value = '';
+            clearButton.style.display = 'none';
+        });
 // Function to fetch and populate sort options for years and genres
 async function populateSortOptions() {
     try {
@@ -295,4 +308,3 @@ function addPageButton(parentElement, pageNum, btnType = '') {
     parentElement.appendChild(pageBtn);
 }
 
-populateTrendingMovies(currentPage);
