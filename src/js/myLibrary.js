@@ -4,3 +4,4 @@ import './footer';
 import './header';
 import './error';
 import './modal';
+import './go-top-btn';

@@ -4,3 +4,4 @@ import './error';
 import './hero';
 import './modal';
 import './container';
+import './go-top-btn';
