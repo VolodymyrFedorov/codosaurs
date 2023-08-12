@@ -1,5 +1,6 @@
 import axios from "axios";
 
+const keyAuthorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA"
 const BASE_URL = "https://api.themoviedb.org/3/";
 const searchButton = document.querySelector('.external-button');
 const searchInput = document.getElementById('searchInput');
@@ -71,7 +72,7 @@ async function loadGenre() {
   const response = await axios.get(`${BASE_URL}genre/movie/list`,{
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+          Authorization: keyAuthorization
     },
     params: {
       language: 'en'
@@ -108,7 +109,7 @@ async function populateTrendingMovies(page) {
         const response = await axios.get(`${BASE_URL}trending/movie/day`, {
             headers: {
                 accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+          Authorization: keyAuthorization
             },
             params: {
                 language: 'en',
@@ -130,36 +131,40 @@ async function populateTrendingMovies(page) {
 }
 
 async function handleSearch(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
 
     const searchInput = document.getElementById('searchInput');
-    const searchQuery = searchInput.value.trim(); // Get the search query and remove leading/trailing spaces
+    const searchQuery = searchInput.value.trim();
 
     if (searchQuery === '') {
-        return; // If the search query is empty, do nothing
+        return;
     }
 
     try {
         const response = await axios.get(`${BASE_URL}search/movie`, {
             headers: {
                 accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+          Authorization: keyAuthorization
             },
             params: {
                 language: 'en',
-                query: searchQuery
+                query: searchQuery,
+                page: 1 // Start with page 1
             }
         });
 
         const searchResults = response.data.results;
         const markup = await createMarkup(searchResults);
 
-        const trendingContainer = document.getElementById('trendingContainer');
         trendingContainer.innerHTML = `<div class="results">${markup}</div>`;
+
+        totalPages = response.data.total_pages; // Update total pages
+        updatePaginationButtons(currentPage, totalPages);
     } catch (error) {
         console.log(error.code);
     }
 }
+
   searchInput.addEventListener('input', function() {
             if (searchInput.value.trim() !== '') {
                 clearButton.style.display = 'inline';
@@ -213,7 +218,7 @@ async function populateSortOptions() {
     }
 }
 // Function to handle sorting by year and genre
-async function handleSort() {
+async function handleSort(page) { // Accept page as an argument
     const sortByYear = document.getElementById('sortByYear');
     const sortByGenre = document.getElementById('sortByGenre');
 
@@ -224,14 +229,14 @@ async function handleSort() {
         const response = await axios.get(`${BASE_URL}discover/movie`, {
             headers: {
                 accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+                Authorization: keyAuthorization
             },
             params: {
                 language: 'en',
-                sort_by: 'popularity.desc', // You can change the sorting method here
+                sort_by: 'popularity.desc',
                 with_genres: selectedGenre,
                 primary_release_year: selectedYear,
-                page: 1
+                page: page // Use the passed page argument
             }
         });
 
@@ -239,28 +244,46 @@ async function handleSort() {
         const markup = await createMarkup(sortedResults);
 
         trendingContainer.innerHTML = markup;
+
+        totalPages = response.data.total_pages; // Update total pages
+        updatePaginationButtons(currentPage, totalPages);
     } catch (error) {
         console.log(error.code);
     }
 }
 
+
+
 // Initialize the page
 async function initializePage() {
     await populateSortOptions();
-    populateTrendingMovies(currentPage);
+    onPageClick(currentPage); // Call onPageClick to load trending movies based on default behavior
 }
 
 initializePage(); // Call this function to initialize the page
+ // Call this function to initialize the page
 
 function onPageClick(pageNumber) {
     if (pageNumber < 1 || pageNumber > totalPages) {
         return;
     }
-    
+
     currentPage = pageNumber;
-    populateTrendingMovies(currentPage);
-    updatePaginationButtons(currentPage, totalPages);
+
+    const sortByYear = document.getElementById('sortByYear');
+    const sortByGenre = document.getElementById('sortByGenre');
+
+    if ((sortByYear.value || sortByGenre.value) && sortByYear.value !== '' && sortByGenre.value !== '') {
+        handleSort(currentPage); // Pass the currentPage to handleSort
+    } else if (searchInput.value.trim() !== '') {
+        handleSearch(); // If searching is active, call handleSearch
+    } else {
+        populateTrendingMovies(currentPage); // Load trending movies if neither sorting nor searching
+    }
+
+    window.scrollTo({ top: trendingContainer.offsetTop, behavior: 'smooth' });
 }
+
 
 function updatePaginationButtons(currentPage, totalPages) {
     paginationNumBtn.innerHTML = ''; // Clear existing buttons

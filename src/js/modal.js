@@ -3,7 +3,6 @@ const refs =  {
     ulEl : document.querySelector(".trends__list"),
     backdrop : document.querySelector(".js-backdrop"),
     btnCls : document.querySelector(".js-btn-cls"),
-    //card : document.querySelector(".trends__item"),
     modalBox : document.querySelector(".js-box"),
     body : document.body,
     hero : document.querySelector(".hero")
@@ -55,11 +54,9 @@ async function onBtnMoDet(event) {
         })
     } catch (error) {
         console.log(error.code)
-        //! clsModal()
+         clsModal()
      }}
     }
-    
-
 async function findCard(id){
     const response = await axios.get(`${BASE_URL}${id}`,{
     headers: {
@@ -166,11 +163,15 @@ function removeEvent() {                             //снимаю слушат
     document.removeEventListener('keydown', keyBoardPress);
     refs.backdrop.removeEventListener("click", onBackdropClick);
     refs.body.style.overflow = "auto";
+    if (document.querySelector(".js-mylib-container")) {
+        document.location.reload()
 
+    }
 }
 function clsModal(event) {                           //закрытие по крестику
     refs.backdrop.classList.add("visually-hidden");
     removeEvent();
+   
 }
 function keyBoardPress(event) {                     //закрытие по 'Escape'
     if (event.key === 'Escape'){
