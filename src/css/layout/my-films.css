@@ -51,3 +51,7 @@
     display: flex;
     }
 }  
+
+.my-films {
+    min-height: 300px;
+}
