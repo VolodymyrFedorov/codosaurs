@@ -252,7 +252,7 @@ footer {
 
 @media screen and (min-width: 768px) {
   .footer-contain {
-    width: 768px;
+    min-width: 768px;
   }
 
   .footer-contain__text {
@@ -316,7 +316,7 @@ footer {
 
 @media screen and (min-width: 1158px) {
   .footer-contain {
-    width: 1280px;
+    min-width: 1000px;
   }
   .footer-contain__text {
     padding-top: 100px;

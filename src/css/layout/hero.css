@@ -26,7 +26,9 @@
   --black: #000000;
   --white: #ffffff;
 }
-
+button{
+    border:none;
+}
 
 .hero {
   background-color: #000;
@@ -37,8 +39,7 @@
     #111111 30.38%,
     rgba(17, 17, 17, 0) 65.61%
   );
- padding: 40px 101px 80px 20px;
-  height: 380px;
+  padding: 40px 101px 80px 20px;
 }
 .container-wrapper {
   overflow: hidden;
@@ -53,8 +54,6 @@
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
-  width: 100vw;
-  height: 100%;
   object-fit: contain;
 }
 .hero-img.hero-lib {
@@ -144,6 +143,7 @@
   background: var(--ligth-theme-title-color);
   text-align: center;
   color: var(--primary-title-color);
+  border: 1px solid #FFF;
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
@@ -176,7 +176,15 @@
   margin-left: 8px;
 }
 
-
+.hero-title-wrap {
+  color: #fff;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  height: 114px;
+  overflow: hidden;
+}
 
 @media screen and (min-width: 768px) {
   .hero-btn.hero-btn-trailer {
@@ -210,10 +218,7 @@
       #111111 39.6%,
       rgba(17, 17, 17, 0) 72.95%
     );
-    padding-top: 62px;
-    padding-left: 32px;
-    padding-bottom: 62px;
-    padding-right: 379px;
+    padding: 62px 379px 72px 32px;
   }
 
   .hero-description1 {
@@ -221,15 +226,14 @@
   }
 
   .hero-description2 {
-    height: 61px;
-    width: 360px;
-    font-style: normal;
-    font-weight: 400;
+    color: #f8f8f8;
+    font-family: Roboto;
     font-size: 14px;
-    line-height: 1.14;
-    display: inline-block;
+    font-weight: 400;
+    margin-bottom: 32px;
+    line-height: 1.16;
+    display: block;
   }
-
 }
 
 @media screen and (min-width: 1280px) {
@@ -260,22 +264,13 @@
       #111111 36.85%,
       rgba(17, 17, 17, 0) 60.05%
     );
-    height: 660px;
-    padding-top: 125px;
-    padding-left: 32px;
-    padding-bottom: 169px;
-    padding-right: 784px;
-    /* right: 25%; */
+    padding: 169px 784px 169px 32px;
   }
 
   .hero-description2 {
-    max-width: 370px;
-    height: 95px;
-    font-family: 'Roboto';
+   font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 1.18;
   }
   /* .hero-container {
     background: linear-gradient(76deg, #111 6.82%, rgba(17, 17, 17, 0) 100%),
