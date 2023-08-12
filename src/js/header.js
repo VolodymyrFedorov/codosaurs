@@ -59,7 +59,7 @@ function pageNavSelector() {
     navRefs.navCat.classList.add('current-page');
     navRefs.navCatMob.classList.add('current-page');
   }
-  if (window.location.href.includes('/my-lib-page.html')) {
+  if (window.location.href.includes('/myLibrary.html')) {
     navRefs.navHome.classList.remove('current-page');
     navRefs.navHomeMob.classList.remove('current-page');
 
