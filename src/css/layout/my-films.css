@@ -33,6 +33,10 @@
     line-height: 1.33;
     display: block;
 }
+
+ .my-films {
+    min-height: 300px;
+}
 @media screen and (min-width: 768px) {
     .library-list{
     display: block;
@@ -50,8 +54,8 @@
     row-gap: 28px;
     display: flex;
     }
-}  
-
-.my-films {
+    .my-films {
     min-height: 300px;
 }
+}  
+
