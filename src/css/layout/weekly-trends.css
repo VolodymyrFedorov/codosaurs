@@ -82,91 +82,87 @@
   line-height: 1.67;
 }
 
-.raiting__body {
-  position: relative;
-  font-size: 17px;
-  letter-spacing: 3.7px;
-}
-
-.raiting__body::before {
-  content: '★★★★★';
-  display: block;
-  color: var(--white-smoke);
-  line-height: 1;
-}
-.rating__active {
-  position: absolute;
-  display: flex;
-  height: 100%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-.rating__active__wrapper {
-  display: flex;
-}
-
-.rating__active__color {
-  content: '★★★★★';
-  color: #f87719;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  line-height: 1;
-}
-
 @media screen and (min-width: 768px) {
-  .trends {
-    padding-top: 52px;
-  }
-  .trends__title,
-  .trends__link {
-    font-size: 24px;
-  }
-  .trends__list {
-    row-gap: 28px;
-  }
-  .trends__item {
-    flex-basis: calc((100% - (16px * 2)) / 3);
-  }
-  .trends__item:not(:first-child) {
-    display: block;
-  }
-
-  .trends__item:not(:nth-child(-n + 3)) {
-    display: none;
-  }
-
-  .trends__name,
-  .trends__ganre {
-    font-size: 12px;
-    line-height: 1.5;
-  }
+    .trends__ganre {
+      font-size: 12px;
+line-height: 1.5;
+    }
 }
 
 @media screen and (min-width: 1280px) {
-  .trends {
-    padding-top: 80px;
+    .trends__ganre {
+       font-size: 20px;
+line-height: normal;
+    }
+}
+
+/* .trends__stars {
+    display: flex;
+    gap: 4px;
+}
+
+.trends__icon {
+    width: 14px;
+    height: 14px;
+}
+
+@media screen and (min-width: 768px) {
+    .trends__icon {
+      
+    width: 10px;
+    height: 10px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .trends__icon {
+    width: 18px;
+    height: 18px;
+    }
+} */
+
+.raiting-star-img {
+    width: 14px;
+    height: 14px;
+ }
+.raiting__body {
+    position: relative;
+    font-size: 17px;
+    letter-spacing: 3.7px;
+ }
+.raiting__body::before {
+    content: '★★★★★';
+    display: block;
+    color: var(--white-smoke);
+    line-height: 1;
   }
-  .trends__title,
-  .trends__link {
-    font-size: 28px;
+.rating__active {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
   }
-  .trends__list {
-    row-gap: 32px;
+.rating__active__color {
+    content: '★★★★★';
+    color: #f87719;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    line-height: 1;
   }
-  .trends__name,
-  .trends__ganre {
-    font-size: 20px;
-    line-height: normal;
+.rating__active__wrapper {
+    display: flex;
   }
+
+
   .trends-box {
     display: flex;
   }
-}
+
 
 .trends-box.trends__item {
   display: flex;
