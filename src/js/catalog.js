@@ -4,3 +4,4 @@ import './error.js';
 import './hero.js';
 import './modal.js';
 import './container.js';
+import './go-top-btn.js';
