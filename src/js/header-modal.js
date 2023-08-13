@@ -9,6 +9,7 @@ headerModalRef.backdropMobileMenu.addEventListener('click', closeMobileMenu);
 
 function toggleMobileMenu() {
   document.body.classList.toggle('is-scroll-block');
+  headerModalRef.backdropMobileMenu.classList.toggle('is-hidden');
   headerModalRef.backdropMobileMenu.classList.toggle('active');
   headerModalRef.modalMobile.classList.toggle('active');
 
