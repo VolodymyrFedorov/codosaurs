@@ -88,7 +88,7 @@ try {
     renderCard(cardFilm);
 
     const btnLs = document.querySelector(".js-btn-to-ls");
-    const toLs =  loadLs(KEY);
+    const toLs = loadLs(KEY) || [];
       
     // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
     // toLs = [...arr];
