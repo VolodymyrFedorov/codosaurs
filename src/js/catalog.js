@@ -1,6 +1,6 @@
-import './footer';
-import './header';
-import './error';
-import './hero';
-import './modal';
-import './container';
+import './footer.js';
+import './header.js';
+import './error.js';
+import './hero.js';
+import './modal.js';
+import './container.js';

@@ -1,7 +1,7 @@
-import './error';
-import './footer';
-import './header';
-import './hero';
-import './upcoming-this-mounth';
-import './weekly-trends';
-import './modal';
+import './error.js';
+import './footer.js';
+import './header.js';
+import './hero.js';
+import './upcoming-this-mounth.js';
+import './weekly-trends.js';
+import './modal.js';
