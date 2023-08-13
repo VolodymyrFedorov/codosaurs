@@ -31,5 +31,5 @@
     <a class="not-found-film-link" href=""> Search movie </a>
   </div>
   <ul class="trends__list visually-hidden"></ul>
-  <button type="button" class="load-more js-load visually-hidden">Load more</button>`,a("7hKzD"),a("i8Q71"),a("9XI3k"),a("5xtVg")}();
-//# sourceMappingURL=myLibrary.418445e8.js.map
+  <button type="button" class="load-more js-load visually-hidden">Load more</button>`,a("7hKzD"),a("i8Q71"),a("9XI3k"),a("5xtVg"),a("bBqzh")}();
+//# sourceMappingURL=myLibrary.a4af14fa.js.map
