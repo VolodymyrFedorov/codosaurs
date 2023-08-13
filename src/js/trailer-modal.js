@@ -2,9 +2,11 @@ import { Notify } from 'notiflix';
 import { swiper } from './swiper';
 import { getMovie } from './api';
 
-const trailerErrorKey = 'DB68T2s7gfI';
+//!const trailerErrorKey = 'DB68T2s7gfI';
 
 const trailerRefs = {
+  erMod : document.querySelector(".backdrop-oops"),
+  erBtn : document.querySelector(".close-modal-oops"),
   backDropRef: document.querySelector('.trailer-backdrop'),
   trailerRef: document.querySelector('.trailer-container'),
   trailerImg: document.querySelector('#trailer-img-err'),
@@ -24,11 +26,14 @@ async function getTrailerByFilmId(id) {
     const movieData = await getMovie(id);
     const trailerKey = movieData.results[0].key;
     renderTrailer(trailerKey);
-  } catch (err) {
-    renderTrailer(trailerErrorKey);
-    Notify.warning(
-      'OOPS... We are very sorry! But we couldn’t find the trailer.'
-    );
+  } catch (err) { 
+  trailerRefs.erMod.classList.remove("is-hidden");
+   addEventErr()
+   
+    //! renderTrailer(trailerErrorKey);
+    //! Notify.warning(
+    //!   'OOPS... We are very sorry! But we couldn’t find the trailer.'
+    //! );
   }
 }
 
@@ -70,3 +75,30 @@ const closeTrailer = () => {
 };
 
 export { renderTrailer, getTrailerByFilmId, onWatchTrailer };
+//?======
+function addEventErr() {                            //добавляю слушателей
+  trailerRefs.erMod.addEventListener("click", onBackdropClick);
+  trailerRefs.erBtn.addEventListener("click", clsModal)
+  document.addEventListener('keydown', keyBoardPress);  
+  
+}
+function onBackdropClick(event) {                   //закрываю по backdrop
+  if(event.target === event.currentTarget ){  
+  trailerRefs.erMod.classList.add("is-hidden");
+  removeEventErr()
+}}
+function keyBoardPress(event) {                     //закрытие по 'Escape'
+  if (event.key === 'Escape'){
+    trailerRefs.erMod.classList.add("is-hidden")  
+    removeEventErr()
+}
+}
+function removeEventErr() {                          //убираю слушателей
+  trailerRefs.erMod.removeEventListener("click", onBackdropClick)
+  document.removeEventListener('keydown', keyBoardPress);
+  trailerRefs.erBtn.removeEventListener("click", clsModal)
+}
+function clsModal(event) {                           //закрытие по крестику
+  trailerRefs.erMod.classList.add("is-hidden");  
+  removeEventErr();
+}
