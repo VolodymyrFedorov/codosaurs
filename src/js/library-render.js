@@ -11,9 +11,10 @@ const refs = {
 let genreArr = [];
 let forCheckRender;
 
-const filmsFromLs = loadLs(KEY);
+const filmsFromLs = loadLs(KEY) || [];
 
-lengthCheck(filmsFromLs);                                // проверяем и догружаем все фильмы 
+lengthCheck(filmsFromLs);
+                              // проверяем и догружаем все фильмы
 
 if(!filmsFromLs || !filmsFromLs.length) {               // перевірка локал сторіджа
     refs.myLibContainer.innerHTML = `<div class="not-found-film-library">
