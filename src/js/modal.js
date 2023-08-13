@@ -129,7 +129,7 @@ export function saveLs (key, value) {
     localStorage.setItem(key, serializedState); 
 }
 export function renderCard(markup) {
-return refs.modalBox.insertAdjacentHTML("afterbegin", markup)  
+refs.modalBox.insertAdjacentHTML("afterbegin", markup)  
 }
 function cardMarkup({poster_path, original_title, vote_average, vote_count, popularity, genres, overview}) {
   const genresList = genres.map(el=>el.name).join(" ");
