@@ -78,8 +78,12 @@ button{
   color: #f8f8f8;
   font-family: Roboto;
   font-size: 14px;
+  line-height: 1.14;
   font-weight: 400;
+  width: 166px;
+
 }
+
 
 .hero-description2::-webkit-scrollbar {
   width: 1px;
@@ -117,9 +121,14 @@ button{
 
 .hero-description2 {
   display: inline-block;
-  height: 60px;
   display: none;
   overflow-y: scroll;
+  color: #f8f8f8;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.17;
+  color: var(--ligth-white);
+  display: none;
 }
 
 .hero-btn.hero-btn-trailer {
@@ -183,7 +192,15 @@ button{
   font-weight: 700;
   margin-bottom: 8px;
   height: 114px;
-  overflow: hidden;
+}
+.hero-title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.17;
+  color: #fff;
+
+  margin-bottom: 8px;
+  width: 199px;
 }
 
 @media screen and (min-width: 768px) {
@@ -204,8 +221,13 @@ button{
     font-family: Roboto;
     font-size: 44px;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.17;
+    width: 332px;
+    vertical-align: bottom;
+
   }
+
+
 
   .hero-description-wrap {
     margin-bottom: 32px;
@@ -231,20 +253,22 @@ button{
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 32px;
-    line-height: 1.16;
+    line-height: 1.17;
     display: block;
+    width: 357px;
   }
 }
 
 @media screen and (min-width: 1280px) {
+ 
   .hero-title {
-    color: #fff;
+    font-weight: 700;
+     color: #fff;
     font-family: Roboto;
     font-size: 64px;
-    font-weight: 700;
-    line-height: 1.2;
-    height: 150px;
+    line-height: 1.17;
     margin-bottom: 16px;
+    width: 464px;
   }
 
   .hero-img.hero-main {
@@ -268,8 +292,12 @@ button{
   }
 
   .hero-description2 {
+    display: block;
    font-size: 16px;
     font-style: normal;
+    line-height: 1.17;
+    width: 464px;
+
     font-weight: 400;
   }
   /* .hero-container {

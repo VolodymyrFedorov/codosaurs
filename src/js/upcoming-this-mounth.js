@@ -67,7 +67,7 @@ export function upcomingSectionMarkup(randomFilm) {
             btnLS = document.querySelector('.upcoming__btn');
             try {
                 const arr = loadLs(KEY);
-                if(arr) toLs = [...arr];
+                // if(arr) toLs = [...arr];
                 if(toLs.some(el=>el.id === filmId)) btnLS.textContent = "Remove from my library";
                 btnLS.addEventListener('click', ()=> {
                     try {

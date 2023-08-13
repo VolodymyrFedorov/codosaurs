@@ -43,6 +43,7 @@ async function createMarkup(array) {
           src="https://image.tmdb.org/t/p/original/${poster_path}"
           alt="${title}"
           class="trends__photo"
+          loading="lazy"
         />
         <div class="trends__description">
           <div class="trends__info">

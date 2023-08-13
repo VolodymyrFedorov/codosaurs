@@ -22,16 +22,16 @@ async function onBtnMoDet(event) {
         const data = await findCard(heroId)
         const cardFilm = cardMarkup(data)
         renderCard(cardFilm);
-    
+   
         const btnLs = document.querySelector(".js-btn-to-ls");
-        const arr =  loadLs(KEY);
+        const toLs =  loadLs(KEY);
           
-        if(arr){                                                //проверил на пустой LS, забрал данные в массив 
-        toLs = [...arr];
+        // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
+        // toLs = [...arr];
     
         if (toLs.some(el=>el.id === (+heroId))){                //проверил есть ли фильм в LS
         btnLs.textContent = "Remove from my library"
-        }}
+        }
     
         btnLs.addEventListener("click", ()=>{                    //обрабатываю клик
             try {
@@ -67,7 +67,7 @@ async function findCard(id){
         language: 'en-US'
     }
     })
-    return data = response.data;
+    return response.data;
   }
 async function openModal(event) {
     const liElem = event.target.closest('li');
@@ -88,14 +88,14 @@ try {
     renderCard(cardFilm);
 
     const btnLs = document.querySelector(".js-btn-to-ls");
-    const arr =  loadLs(KEY);
+    const toLs = loadLs(KEY) || [];
       
-    if(arr){                                                //проверил на пустой LS, забрал данные в массив 
-    toLs = [...arr];
+    // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
+    // toLs = [...arr];
 
     if (toLs.some(el=>el.id === (+cardId))){                //проверил есть ли фильм в LS
     btnLs.textContent = "Remove from my library"
-    }}
+    }
 
     btnLs.addEventListener("click", ()=>{                    //обрабатываю клик
         try {
@@ -117,23 +117,23 @@ try {
         }
     })
 } catch (error) {
-    console.log(error.code)
+    console.log(error)
     clsModal()
  }}
 export function loadLs(key) {
     const arrJs = localStorage.getItem(key);                       
-    return arr = JSON.parse(arrJs);
+    return JSON.parse(arrJs);
  }
 export function saveLs (key, value) {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState); 
 }
 export function renderCard(markup) {
-return refs.modalBox.insertAdjacentHTML("afterbegin", markup)  
+refs.modalBox.insertAdjacentHTML("afterbegin", markup)  
 }
 function cardMarkup({poster_path, original_title, vote_average, vote_count, popularity, genres, overview}) {
   const genresList = genres.map(el=>el.name).join(" ");
-  return markup =` <img class="modal-img" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}">
+  const markup =` <img class="modal-img" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}">
     <div class="modal-film-info">
       <h2 class="modal-film-title">${original_title}</h2>
       <div class="modal-film-info-box">
@@ -155,7 +155,7 @@ function cardMarkup({poster_path, original_title, vote_average, vote_count, popu
       <h3  class="modal-film-info-title">About</h3>
       <p class="modal-film-text-about">${overview}</p>
       <button  type="button" class="modal-btn js-btn-to-ls" >Add to my library</button> `
-     
+    return markup;
 
 }
 function removeEvent() {                             //снимаю слушателей

@@ -1,7 +1,7 @@
-import './library-render';
-import './library-search';
-import './footer';
-import './header';
-import './error';
-import './modal';
-import './go-top-btn';
+import './library-render.js';
+import './library-search.js';
+import './footer.js';
+import './header.js';
+import './error.js';
+import './modal.js';
+import './go-top-btn.js';
