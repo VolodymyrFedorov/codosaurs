@@ -67,7 +67,7 @@ async function findCard(id){
         language: 'en-US'
     }
     })
-    return data = response.data;
+    return response.data;
   }
 async function openModal(event) {
     const liElem = event.target.closest('li');
