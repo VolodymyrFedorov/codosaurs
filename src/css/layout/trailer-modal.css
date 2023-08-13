@@ -1,0 +1,120 @@
+.is-trailer-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 200ms linear, visibility 200ms linear, transform 200ms;
+}
+
+.trailer-container {
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+  opacity: 1;
+  /* transform: scale(1); */
+  transition: opacity 200ms linear, visibility 200ms linear, transform 200ms;
+}
+.trailer-container.is-trailer-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 200ms linear, visibility 200ms linear, transform 200ms;
+}
+
+.is-scroll-block {
+  overflow: hidden;
+}
+
+.trailer-backdrop {
+  position: fixed;
+  background-color: rgba(24, 23, 23, 0.767);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  z-index: 40;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 200ms linear, visibility 200ms linear, transform 100ms;
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+
+.trailer-backdrop.is-trailer-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 200ms linear, visibility 200ms linear, transform 200ms;
+}
+
+.trailer-iframe {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trailer-modal-container {
+  position: relative;
+  z-index: 50;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #2423232b;
+  overflow: hidden;
+  display: flex;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 60px #f87719;
+}
+
+/* .modal-trailer-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+} */
+
+/* .close-btn-icon {
+  stroke: var(--primary-title-color);
+  transition: stroke 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.modal-trailer-btn:active .close-btn-icon,
+.modal-trailer-btn:hover .close-btn-icon,
+.modal-trailer-btn:focus .close-btn-icon {
+  stroke: var(--accent-color);
+} */
+
+@media screen and (min-width: 320px) {
+  .trailer-modal-container {
+    width: 95vw;
+    height: 25vh;
+    border-radius: 30px;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .trailer-modal-container {
+    width: 650px;
+    height: 360px;
+    border-radius: 40px;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .trailer-modal-container {
+    width: 1080px;
+    height: 600px;
+    border-radius: 50px;
+  }
+}

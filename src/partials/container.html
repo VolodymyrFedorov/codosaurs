@@ -1,0 +1,41 @@
+<section class="container">
+    <div class="container-layout">
+        <div class="search-container">
+
+            <div class="sort-options">
+                <select class="sort-input sort-genre-input" id="sortByGenre">
+                </select>
+                <select class="sort-input sort-year-input" id="sortByYear">
+                </select>
+            </div>
+            <div class="input-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search">
+                <svg class="clear-svg" id="clearButton" style="display: none;">
+                    <use href="./image/sprite2.svg#icon-clear-input"></use>
+                </svg>
+            </div>
+            <button type="submit" class="external-button">
+                <svg class="search-svg">
+                    <use href="./image/sprite.svg#search"></use>
+                </svg>
+            </button>
+        </div>
+
+        <div class="results">
+            <ul class="trending-container trends__list" id="trendingContainer">
+
+            </ul>
+        </div>
+        <div class="pagination">
+            <button class="pagination-arrow-btn" id="prevPage"> <svg class="arrow-btn-svg">
+                    <use href="./image/sprite2.svg#icon-arrow-prev"></use>
+                </svg> </button>
+            <div class="pagination-num-btn">
+                <!-- Numeric page buttons will be populated dynamically -->
+            </div>
+            <button class="pagination-arrow-btn" id="nextPage"> <svg class="arrow-btn-svg">
+                    <use href="./image/sprite2.svg#icon-arrow-next"></use>
+                </svg> </button>
+        </div>
+    </div>
+</section>

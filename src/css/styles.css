@@ -1,0 +1,17 @@
+@import url('../../node_modules/modern-normalize/modern-normalize.css');
+@import url('./utils/variables.css');
+@import url('./base/common.css');
+@import url('./base/container.css');
+@import url('./layout/container-layout.css');
+@import url('./layout/error.css');
+@import url('./layout/footer.css');
+@import url('./layout/header.css');
+@import url('./layout/hero.css');
+@import url('./layout/trailer-modal.css');
+@import url('./layout/modal.css');
+@import url('./layout/upcoming-this-mounth.css');
+@import url('./layout/weekly-trends.css');
+@import url('./layout/my-films.css');
+@import url('./utils/placeholders.css');
+
+
