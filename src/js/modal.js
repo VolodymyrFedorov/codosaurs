@@ -24,7 +24,7 @@ async function onBtnMoDet(event) {
         renderCard(cardFilm);
     
         const btnLs = document.querySelector(".js-btn-to-ls");
-        const arr =  loadLs(KEY);
+        const toLs =  loadLs(KEY);
           
         // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
         // toLs = [...arr];
@@ -88,7 +88,7 @@ try {
     renderCard(cardFilm);
 
     const btnLs = document.querySelector(".js-btn-to-ls");
-    const arr =  loadLs(KEY);
+    const toLs =  loadLs(KEY);
       
     // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
     // toLs = [...arr];
