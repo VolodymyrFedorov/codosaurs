@@ -255,6 +255,34 @@
        
     }
 }
-body.ligth-mode .class {
-    
+/*Light theme styles ======================== */
+body.ligth-mode .modal {
+    background-color: var(--white-smoke);
+    color: var(--black);
+}
+
+body.ligth-mode .modal-film-text,
+body.ligth-mode .modal-film-info-title,
+body.ligth-mode .modal-film-text-about,
+body.ligth-mode .modal-film-genre,
+body.ligth-mode .modal-film-population,
+body.ligth-mode .modal-film-title
+{
+    color: var(--black);
+}
+body.ligth-mode .modal-icon-close{
+    stroke: var(--black);
+}
+body.ligth-mode .modal-btn{
+background: var(--white-smoke);
+    color: var(--orange);
+    border: 1px solid var(--orange);
+}
+body.ligth-mode .modal-btn:focus,
+body.ligth-mode .modal-btn:hover{
+    background: linear-gradient(#000,#000) padding-box padding-box,linear-gradient(141.22deg,#ffc226 9.4%,#f84119 91.91%) border-box;
+}
+body.ligth-mode .modal-film-rating,
+body.ligth-mode .modal-film-votes{
+    background-color: var(--light-gray);
 }
