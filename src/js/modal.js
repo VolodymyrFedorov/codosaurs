@@ -22,7 +22,7 @@ async function onBtnMoDet(event) {
         const data = await findCard(heroId)
         const cardFilm = cardMarkup(data)
         renderCard(cardFilm);
-    
+   
         const btnLs = document.querySelector(".js-btn-to-ls");
         const toLs =  loadLs(KEY);
           
@@ -122,7 +122,7 @@ try {
  }}
 export function loadLs(key) {
     const arrJs = localStorage.getItem(key);                       
-    return arr = JSON.parse(arrJs);
+    return JSON.parse(arrJs);
  }
 export function saveLs (key, value) {
     const serializedState = JSON.stringify(value);
