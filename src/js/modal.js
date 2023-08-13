@@ -117,7 +117,7 @@ try {
         }
     })
 } catch (error) {
-    console.log(error.code)
+    console.log(error)
     clsModal()
  }}
 export function loadLs(key) {
