@@ -133,7 +133,7 @@ refs.modalBox.insertAdjacentHTML("afterbegin", markup)
 }
 function cardMarkup({poster_path, original_title, vote_average, vote_count, popularity, genres, overview}) {
   const genresList = genres.map(el=>el.name).join(" ");
-  return markup =` <img class="modal-img" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}">
+  const markup =` <img class="modal-img" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}">
     <div class="modal-film-info">
       <h2 class="modal-film-title">${original_title}</h2>
       <div class="modal-film-info-box">
@@ -155,7 +155,7 @@ function cardMarkup({poster_path, original_title, vote_average, vote_count, popu
       <h3  class="modal-film-info-title">About</h3>
       <p class="modal-film-text-about">${overview}</p>
       <button  type="button" class="modal-btn js-btn-to-ls" >Add to my library</button> `
-     
+    return markup;
 
 }
 function removeEvent() {                             //снимаю слушателей
