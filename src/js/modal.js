@@ -26,12 +26,12 @@ async function onBtnMoDet(event) {
         const btnLs = document.querySelector(".js-btn-to-ls");
         const arr =  loadLs(KEY);
           
-        if(arr){                                                //проверил на пустой LS, забрал данные в массив 
-        toLs = [...arr];
+        // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
+        // toLs = [...arr];
     
         if (toLs.some(el=>el.id === (+heroId))){                //проверил есть ли фильм в LS
         btnLs.textContent = "Remove from my library"
-        }}
+        }
     
         btnLs.addEventListener("click", ()=>{                    //обрабатываю клик
             try {
@@ -90,12 +90,12 @@ try {
     const btnLs = document.querySelector(".js-btn-to-ls");
     const arr =  loadLs(KEY);
       
-    if(arr){                                                //проверил на пустой LS, забрал данные в массив 
-    toLs = [...arr];
+    // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
+    // toLs = [...arr];
 
     if (toLs.some(el=>el.id === (+cardId))){                //проверил есть ли фильм в LS
     btnLs.textContent = "Remove from my library"
-    }}
+    }
 
     btnLs.addEventListener("click", ()=>{                    //обрабатываю клик
         try {
