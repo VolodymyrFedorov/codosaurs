@@ -263,3 +263,16 @@
     line-height: 1, 55;
   }
 }
+body.ligth-mode .modal-oops {
+  background-color: var(--white-smoke);
+
+}
+body.ligth-mode .text-modal-oops{
+  color: var(--black);
+}
+body.ligth-mode .close-modal-oops{
+    background-color: var(--white-smoke);
+}
+body.ligth-mode .close-oops{
+  stroke: var(--black);
+}
