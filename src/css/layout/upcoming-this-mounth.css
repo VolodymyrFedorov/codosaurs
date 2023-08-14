@@ -213,7 +213,6 @@
 /*Light theme styles ======================== */
 
 body.ligth-mode .upcoming {
-    background-color: var(--white-smoke);
     color: var(--black);
 }
 body.ligth-mode .upcoming__item__rating > li:not(.upcoming__item_customize),body.ligth-mode .upcoming-about-wrapper > .upcoming__about__title {
@@ -221,7 +220,7 @@ body.ligth-mode .upcoming__item__rating > li:not(.upcoming__item_customize),body
 }
 body.ligth-mode .upcoming__item_customize:nth-child(2) > span {
     color: var(--black);
-    background-color: var(--white);
+    background-color: var(--white-smoke);
 }
 body.ligth-mode .tablet__subtitle {
     color: var(--black);

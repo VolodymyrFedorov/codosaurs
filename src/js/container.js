@@ -155,8 +155,20 @@ async function handleSearch(event) {
         });
 
         const searchResults = response.data.results;
+        if (searchResults.length === 0) {
+            const markup = `
+            <div class="no-results">
+              <p class="text-no-results">OOPS...</p>
+              <p class="text-no-results">We are very sorry!</p>
+              <p class="text-no-results">
+                We don’t have any results matching your search.
+              </p>
+            </div>`
+            trendingContainer.innerHTML = markup
+          return
+        }
         const markup = await createMarkup(searchResults);
-
+        
         trendingContainer.innerHTML = `<div class="results">${markup}</div>`;
 
         totalPages = response.data.total_pages; // Update total pages

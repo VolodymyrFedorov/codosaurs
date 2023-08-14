@@ -38,6 +38,7 @@ body.ligth-mode .trends__item{
   flex-wrap: wrap; 
   column-gap: 16px; 
   row-gap: 16px; 
+  margin: 0 auto;
 } 
  
 .trends__item { 

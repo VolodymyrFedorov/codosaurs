@@ -158,6 +158,9 @@
 .text-no-results:not(:last-child) {
   margin-bottom: 4px;
 }
+body.ligth-mode .text-no-results {
+  color: var(--black);
+}
 @media screen and (min-width: 768px) {
   .catalog-movies {
     padding-top: 80px;
@@ -205,6 +208,9 @@
   color: var(--white-smoke);
 }
 
+body.ligth-mode .not-found-film-library-text-item {
+  color: var(--black);
+}
 .not-found-film-link {
   display: inline-block;
   margin-top: 20px;
@@ -231,7 +237,6 @@
     font-weight: 400;
     font-size: 24px;
     line-height: 1.33;
-    color: var(--white-smoke);
   }
 
   .not-found-film-link {
@@ -251,7 +256,6 @@
   .not-found-film-library-text-item {
     font-size: 32px;
     line-height: 1.13;
-    color: var(--white-smoke);
   }
 
   .not-found-film-link {
@@ -260,6 +264,6 @@
     padding: 12px 24px;
     text-align: center;
     font-size: 18px;
-    line-height: 1, 55;
+    line-height: 1.55;
   }
 }
