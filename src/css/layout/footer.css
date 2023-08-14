@@ -115,6 +115,7 @@ body.ligth-mode .footer-contain__modal svg {
 
 /* посилання на github */
 .footer-contain__modal-github {
+  display: block;
   position: relative;
   text-align: center;
   cursor: pointer;
