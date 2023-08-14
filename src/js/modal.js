@@ -1,4 +1,14 @@
 import  axios from 'axios';
+import { Notify } from "notiflix";
+Notify.init({
+    width: '350px',
+    timeout: 3000,
+    borderRadius: '74px',
+    position: 'center-centre',
+    failure: {
+    background: '#F87719',
+    textColor: '#111111',
+    }});
 const refs =  {
     ulEl : document.querySelector(".trends__list"),
     backdrop : document.querySelector(".js-backdrop"),
@@ -11,20 +21,22 @@ const BASE_URL='https://api.themoviedb.org/3/movie/'
 refs.ulEl.addEventListener("click", openModal)
 let toLs = [];
 export const KEY = "Library";
+
 refs.hero.addEventListener("click", onBtnMoDet)
+
 async function onBtnMoDet(event) {
     if (event.target.classList.contains("is-id")) {
     const heroId = event.target.dataset.id;
-    refs.backdrop.classList.remove("visually-hidden");
+   
     adEventListners();
     try {
         refs.modalBox.innerHTML = " "
         const data = await findCard(heroId)
         const cardFilm = cardMarkup(data)
         renderCard(cardFilm);
-   
+        refs.backdrop.classList.remove("visually-hidden");
         const btnLs = document.querySelector(".js-btn-to-ls");
-        const toLs =  loadLs(KEY);
+        const toLs =  loadLs(KEY) || [];
           
         // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
         // toLs = [...arr];
@@ -49,25 +61,31 @@ async function onBtnMoDet(event) {
     
                
             } catch (error) {
-                console.error("Set state error: ", error.message);
+                console.error("Set state error: ", error);
             }
         })
     } catch (error) {
-        console.log(error.code)
+        console.log(error)
          clsModal()
      }}
     }
 async function findCard(id){
-    const response = await axios.get(`${BASE_URL}${id}`,{
-    headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
-          },   
-    params : {
-        language: 'en-US'
+    try {
+        const response = await axios.get(`${BASE_URL}${id}`,{
+            headers: {
+                    accept: 'application/json',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTBiMjA0M2E3YmRlZmRmMTI5ZGViYjc4NGJiZTFmNyIsInN1YiI6IjY0ZDA5ZWY5ODUwOTBmMDBjODdkY2FjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AoWYcFyuoQyP_ePohi3LRcw4Fp8RAJIbZs-uo4526oA'
+                  },   
+            params : {
+                language: 'en-US'
+            }
+            })
+            return response.data;
+    } catch (error) {
+        console.log(error);
+        return Notify.failure("Oops, we don't have any detail about this film");
     }
-    })
-    return response.data;
+   
   }
 async function openModal(event) {
     const liElem = event.target.closest('li');
@@ -88,9 +106,9 @@ try {
     renderCard(cardFilm);
 
     const btnLs = document.querySelector(".js-btn-to-ls");
-    const toLs = loadLs(KEY) || [];
+    const toLs =  loadLs(KEY) || [];
       
-    // if(arr){                                                //проверил на пустой LS, забрал данные в массив 
+    // if(arr){                                              //проверил на пустой LS, забрал данные в массив 
     // toLs = [...arr];
 
     if (toLs.some(el=>el.id === (+cardId))){                //проверил есть ли фильм в LS
@@ -155,8 +173,8 @@ function cardMarkup({poster_path, original_title, vote_average, vote_count, popu
       <h3  class="modal-film-info-title">About</h3>
       <p class="modal-film-text-about">${overview}</p>
       <button  type="button" class="modal-btn js-btn-to-ls" >Add to my library</button> `
-    return markup;
-
+     
+return markup;
 }
 function removeEvent() {                             //снимаю слушателей
     refs.btnCls.removeEventListener("click", clsModal);
