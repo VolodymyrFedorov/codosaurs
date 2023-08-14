@@ -61,7 +61,7 @@ async function onBtnMoDet(event) {
     
                
             } catch (error) {
-                console.error("Set state error: ", error.message);
+                console.error("Set state error: ", error);
             }
         })
     } catch (error) {
