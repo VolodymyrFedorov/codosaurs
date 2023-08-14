@@ -8,7 +8,7 @@ const navRefs = {
   navLibMob: document.querySelector('#nav_lib_mob'),
   navCatMob: document.querySelector('#nav_cat_mob'),
 };
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', ()=> {
   const checkbox = document.querySelector("input[type='checkbox']");
   const storedTheme = localStorage.getItem('theme');
 
@@ -28,14 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function applyThemeStyles() {
-  const theme = document.body.classList.contains('ligth-mode')
-    ? 'ligth'
-    : 'dark';
-
-  const allElements = document.querySelectorAll('*');
-  allElements.forEach(element => {
-    element.classList.toggle('ligth-mode', theme === 'ligth');
-  });
+  document.body.classList.contains('ligth-mode') ? 'ligth' : 'dark';
 }
 
 function pageNavSelector() {

@@ -31,6 +31,11 @@
   padding-left: 20px;
   margin-right: 10px;
 }
+body.ligth-mode .sort-input, 
+body.ligth-mode .search-input {
+  background-color: transparent;
+  color: var(--gray);
+}
 .clear-svg {
   position: absolute;
   width: 18px;
@@ -93,19 +98,26 @@
   border: none;
 }
 .pagination-arrow-btn {
-  background-color: #111111;
+  background-color: transparent;
   color: #ccc;
   border: none;
 }
+
 .arrow-btn-svg {
   stroke: #ffffff;
   width: 28px;
   height: 28px;
 }
+body.ligth-mode .arrow-btn-svg {
+  stroke: var(--gray);
+}
 .search-svg {
   stroke: #ffffff;
   width: 18px;
   height: 18px;
+}
+body.ligth-mode .search-svg {
+  stroke: var(--black);
 }
 /* Для экранов >= 1280px */
 @media (min-width: 1280px) {

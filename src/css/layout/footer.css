@@ -1,7 +1,4 @@
 footer {
-  background: #111111;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   justify-content: center;
 }
@@ -17,8 +14,11 @@ footer {
   font-family: 'Roboto Regular';
   font-size: 14px;
   line-height: 1.14;
+  color: var(--light-gray);
+}
 
-  color: #b7b7b7;
+body.ligth-mode .footer-contain__text {
+  color: var(--gray);
 }
 
 .footer-contain__svg {
@@ -37,22 +37,10 @@ footer {
 .footer-contain__students:focus {
   color: #f87719;
 }
-/* зміна теми сайту */
-/* .light-theme footer {
-  background: #f5f5f5;
-}
 
-.light-theme .footer-contain__text {
+body.ligth-mode .footer-contain__students {
   color: #595959;
 }
-
-.light-theme .footer-contain__students {
-  color: #595959;
-}
-.light-theme .footer-contain__students:hover,
-.light-theme .footer-contain__students:focus {
-  color: #f87719;
-} */
 
 /* modal */
 .footer-contain__backdrop {
@@ -63,7 +51,7 @@ footer {
   height: 100%;
   background-color: rgba(46, 47, 66, 0.4);
   opacity: 1;
-
+  z-index: 1000;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-contain__is-hidden {
@@ -87,7 +75,7 @@ footer {
   border-radius: 16px;
 }
 
-.light-theme .footer-contain__modal {
+body.ligth-mode .footer-contain__modal {
   color: #111111;
   background: #f8f8f8;
   box-shadow: 1px 1px 14px 4px rgba(28, 25, 23, 0.42);
@@ -101,7 +89,7 @@ footer {
   transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.light-theme .footer-contain__modal svg {
+body.ligth-mode .footer-contain__modal svg {
   stroke: #111111;
 }
 
@@ -141,7 +129,7 @@ footer {
   transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.light-theme .footer-contain__modal-github {
+body.ligth-mode .footer-contain__modal-github {
   background: #f5f5f5;
   color: #111111;
 }
@@ -165,6 +153,15 @@ footer {
 
 .footer-contain__modal-github:focus,
 .footer-contain__modal-github:hover {
+  background: linear-gradient(
+    to right,
+    rgba(255, 194, 38, 1),
+    rgba(248, 65, 25, 1)
+  );
+}
+
+body.ligth-mode .footer-contain__modal-github:focus,
+body.ligth-mode .footer-contain__modal-github:hover {
   background: linear-gradient(
     to right,
     rgba(255, 194, 38, 1),
@@ -237,12 +234,20 @@ footer {
 
   transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.light-theme .footer-contain__modal-back {
+body.ligth-mode .footer-contain__modal-back {
   background: #f5f5f5;
   color: #111111;
 }
 .footer-contain__modal-back:focus,
 .footer-contain__modal-back:hover {
+  background: linear-gradient(
+    to right,
+    rgba(255, 194, 38, 1),
+    rgba(248, 65, 25, 1)
+  );
+}
+body.ligth-mode .footer-contain__modal-back:focus,
+body.ligth-mode .footer-contain__modal-back:hover {
   background: linear-gradient(
     to right,
     rgba(255, 194, 38, 1),

@@ -1,6 +1,5 @@
 .trends { 
   padding-top: 40px; 
-  background: #111; 
 } 
  
 .trends__titles { 
@@ -17,6 +16,14 @@
   line-height: normal; 
   text-transform: uppercase; 
 } 
+
+body.ligth-mode .trends__title {
+  color: var(--black);
+}
+
+body.ligth-mode .trends__item{
+  box-shadow: 1px 1px 24px 2px rgba(1, 1, 1, 0.45);
+}
  
 .trends__link { 
   color: var(--orange, #f87719); 
@@ -36,7 +43,7 @@
 .trends__item { 
   position: relative; 
   flex-basis: 100%; 
- 
+  cursor: pointer;
   border-radius: 5px; 
 } 
  
@@ -170,4 +177,8 @@
  
 .trends-box.trends__item { 
   display: flex; 
+}
+
+.library-list {
+  cursor: pointer;
 }
