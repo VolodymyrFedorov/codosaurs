@@ -13,9 +13,7 @@ const trailerRefs = {
 function onWatchTrailer(e) {
   if (e.target.classList.contains('hero-btn-trailer')) {
     const dataId = e.target.dataset.id;
-    getTrailerByFilmId(dataId);
-    if (!window.location.href.includes('/my-lib-page.html'))
-      swiper.autoplay.stop();
+    getTrailerByFilmId(dataId);;
   }
 }
 
@@ -63,7 +61,6 @@ const closeTrailer = () => {
   trailerRefs.trailerRef.innerHTML = '';
 
   if (!window.location.href.includes('/my-lib-page.html'))
-    swiper.autoplay.start();
 
   document.body.removeEventListener('keydown', listenKeyDawn);
   trailerRefs.backDropRef.removeEventListener('click', listenBackdropClick);
