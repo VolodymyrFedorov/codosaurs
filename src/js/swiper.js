@@ -19,7 +19,7 @@ function swiperInit() {
 }
 
 function renderSwiper() {
-  const markup = `<div class="swiper">
+  const markup = `<div class="swiper container">
   <div class="swiper-wrapper"></div>`;
 
   heroRefs.hero.innerHTML = markup;

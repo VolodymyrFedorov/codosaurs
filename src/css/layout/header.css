@@ -1,41 +1,12 @@
-:root {
-  --primary-text-color: #f8f8f8;
-  --secondary-text-color: #b7b7b7;
 
-  --primary-title-color: #ffffff;
-
-  --primary-bgc: #111111;
-
-  --primary-btn-color: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
-
-  --primary-ligth-theme-text-color: #282828;
-  --secondary-ligth-theme-text-color: #595959;
-
-  --ligth-theme-title-color: #111111;
-
-  --ligth-theme-bgc: #ffffff;
-
-  --primary-ligth-theme-btn-color: linear-gradient(
-    141.22deg,
-    #ffc226 9.4%,
-    #f84119 91.91%
-  );
-
-  --accent-color: #f87719;
-
-  --black: #000000;
-  --white: #ffffff;
-}
-
-
-.logo-text.ligth-mode {
+body.ligth-mode .logo-text{
   color: #282828;
 }
 
 .logo span:hover,
-.logo-text.ligth-mode:hover,
+body.ligth-mode .logo-text:hover,
 .mobile-menu:hover {
-  color: var(--accent-color);
+  color: var(----light-gray);
 }
 
 .nav_item {
@@ -52,7 +23,7 @@
   content: '';
   width: 0%;
   height: 2px;
-  background-color: var(--accent-color);
+  /* background-color: var(--orange); */
   border-radius: 5px;
   transition: width 0.3s;
   position: absolute;
@@ -64,7 +35,7 @@
 .header {
   transition: background-color 0.5s ease;
 }
-.header.ligth-mode {
+body.ligth-mode .header {
   background-color: #fff;
 }
 
@@ -75,21 +46,32 @@
 }
 
 .current-page {
-  text-shadow: 0px 0px 8px var(--accent-color);
-  color: var(--accent-color);
-}
-.nav_link{
-    color:var(--primary-title-color)
+  text-shadow: 0px 0px 8px var(--orange);
+  color: var(--orange);
 }
 
+.nav_link{
+    color:var(--light-gray)
+}
+
+body.ligth-mode .nav_link{
+  color: var(--gray);
+}
+
+body.ligth-mode .nav_link:hover,
+body.ligth-mode .current-page {
+  color: var(--orange)
+}
+
+
 .nav_link:hover {
-  color: var(--accent-color);
-  text-shadow: 0px 0px 8px var(--accent-color);
+  color: var(--orange);
+  text-shadow: 0px 0px 8px var(--orange);
   transform: scale(1.1);
 }
 .current-page {
-  text-shadow: 0px 0px 8px var(--accent-color);
-  color: var(--accent-color);
+  text-shadow: 0px 0px 8px var(--orange);
+  color: var(--orange);
 }
 
 @media screen and (min-width: 320px) {
@@ -108,7 +90,7 @@
     line-height: calc(14 / 12);
   }
 
-  .mobile-menu.ligth-mode {
+  body.ligth-mode .mobile-menu {
     color: #595959;
   }
 
@@ -167,7 +149,7 @@
     flex-direction: column;
     gap: 44px;
     width: 70vw;
-    height: 90vh;
+    height: 100vh;
     z-index: 999;
     background-color: #171717;
 
@@ -181,7 +163,7 @@
     transform: translateX(0);
   }
 
-  .modal-mobile-menu.ligth-mode {
+  body.ligth-mode .modal-mobile-menu {
     background-color: #f8f8f8;
     color: #111111;
   }
