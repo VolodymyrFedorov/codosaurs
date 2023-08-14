@@ -15,6 +15,9 @@ body {
   margin: 0;
   background-color: #111111;
 }
+body.ligth-mode {
+  background-color: #fff;
+}
 
 .wrapper {
 min-height: 100%;

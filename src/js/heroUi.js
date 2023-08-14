@@ -16,15 +16,8 @@ function crateSlideMarkup(
   <div class="hero-title-wrap" data-swiper-parallax="-300">
     <h1 class="hero-title">${title || name}</h1>
   </div>
-  <div data-swiper-parallax="-350" class="Stars" style="--rating: ${
-    vote_average / 2
-  }; " aria-label="Rating of this product is ${(vote_average / 2).toFixed(
-    1
-  )} out of 5.">
-  </div>
   <div class="hero-description-wrap" data-swiper-parallax="-400">
-    <p class="hero-description1">${overview}</p>
-    <p class="hero-description2">${overview}</p>
+    <p class="hero-description">${overview}</p>
   </div>
   <div class="hero-btn-wrap" data-swiper-parallax="-450" data-id="${id}">
   <button type="button" class="hero-btn hero-btn-trailer" id="hero-btn-trailer" data-id="${id}">

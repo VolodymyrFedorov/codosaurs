@@ -22,7 +22,7 @@ async function heroHandler() {
     return;
   }
   try {
-    const movieArr = await getTopMoviesArr(5);
+    const movieArr = await getTopMoviesArr(1);
     if (movieArr.length === 0) return;
     renderHeroSlider(movieArr);
   } catch (error) {

@@ -44,11 +44,11 @@ export function upcomingSectionMarkup(randomFilm) {
                     </li>
                     <li class="upcoming__tablet__item">
                         <p class="tablet__subtitle">Popularity</p>
-                        <p class="tablet__info upcoming__item_customize">${randomFilm.popularity}</p>
+                        <p class="tablet__info upcoming__item_customize">${randomFilm.popularity.toFixed(1)}</p>
                     </li>
                     <li class="upcoming__tablet__item">
                         <p class="tablet__subtitle">Vote &#47; Votes</p>
-                        <p class="tablet__info upcoming__item_customize"><span>${randomFilm.vote_average}</span> &#47; <span>${randomFilm.vote_count}</span></p>
+                        <p class="tablet__info upcoming__item_customize"><span>${randomFilm.vote_average.toFixed(1)}</span> &#47; <span>${randomFilm.vote_count}</span></p>
                     </li>
                     <li class="upcoming__tablet__item">
                         <p class="tablet__subtitle">Genre</p>

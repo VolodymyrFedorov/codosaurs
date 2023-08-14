@@ -7,10 +7,17 @@
     border: 1px solid var(--white);
     font-size: 14px;
 }
+body.ligth-mode #genre-search {
+    background-color: var(--white-smoke);
+    color: var(--second-black);
+}
 
 .mylib-options {
     padding-block: 14px;
     color: var(--white-smoke);
+}
+body.ligth-mode .mylib-options {
+    color: var(--light-gray);
 }
 .library-list{
     width: 280px;
