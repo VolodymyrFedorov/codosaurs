@@ -36,9 +36,9 @@
     z-index: 99999;
 }
 .modal{
-    padding: 52px 16px ;
+    padding: 42px 16px ;
     width: 280px;
-    height: 847px;
+    max-height: 827px;
     position: relative;
 
     border-radius: 16px;
@@ -47,9 +47,10 @@
     box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
 
     position: relative;
-    top: 50%;
+    top: 10%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%)scale(1);
+    transition: transform;
 }
 .modal-close-btn {
     cursor: pointer;
@@ -149,7 +150,7 @@
 }
 .modal-film-text-about{
     margin-bottom: 16px;
-    max-height: 180px;
+    max-height: 80px;
     overflow-y: auto; 
 
     color: var(--white-smoke);
