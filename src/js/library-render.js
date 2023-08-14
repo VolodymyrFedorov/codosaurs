@@ -24,7 +24,7 @@ if(!filmsFromLs || !filmsFromLs.length) {               // перевірка л
       You don’t have any movies at your library.
     </p>
     
-    <a class="not-found-film-link" href=""> Search movie </a>
+    <a class="not-found-film-link" href="./catalog.html"> Search movie </a>
   </div>
   <ul class="trends__list visually-hidden"></ul>
   <button type="button" class="load-more js-load visually-hidden">Load more</button>`
